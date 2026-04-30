@@ -7,8 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Sanctuary" />
   <meta name="theme-color" content="#1f2419" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Cache-Control" content="no-cache" />
   <title>Sanctuary — Daily Affirmations</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +24,6 @@
       --linen-soft: #d4cdb9;
       --linen-mute: #9a9580;
       --brass: #c9a455;
-      --brass-dim: #8b7239;
       --rose-soft: #c97a7a;
       --line: rgba(235, 228, 212, 0.12);
       --line-strong: rgba(235, 228, 212, 0.25);
@@ -49,15 +47,10 @@
       pointer-events: none;
       z-index: 1;
     }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes breathe { 0%, 100% { transform: scale(0.92); } 50% { transform: scale(1.08); } }
     .fade-up { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
     .breath-circle { animation: breathe 9s ease-in-out infinite; }
-    .pulse-anim { animation: pulse 2.5s ease-in-out infinite; }
     .stagger-1 { animation-delay: 0.05s; }
     .stagger-2 { animation-delay: 0.15s; }
     .stagger-3 { animation-delay: 0.25s; }
@@ -66,440 +59,100 @@
     .stagger-6 { animation-delay: 0.55s; }
     .stagger-7 { animation-delay: 0.65s; }
     .stagger-8 { animation-delay: 0.75s; }
-    .app-shell {
-      position: relative;
-      z-index: 2;
-      max-width: 640px;
-      margin: 0 auto;
-      padding: max(2rem, var(--safe-top)) 1.5rem max(2rem, var(--safe-bottom));
-    }
-    .eyebrow {
-      font-family: 'Inter Tight', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--brass);
-    }
-    .display-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-weight: 500;
-      font-size: clamp(3.5rem, 12vw, 5.5rem);
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      color: var(--linen);
-    }
+    .app-shell { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; padding: max(2rem, var(--safe-top)) 1.5rem max(2rem, var(--safe-bottom)); }
+    .eyebrow { font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--brass); }
+    .display-title { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: clamp(3.5rem, 12vw, 5.5rem); line-height: 0.95; letter-spacing: -0.03em; color: var(--linen); }
     .display-title em { font-style: italic; font-weight: 400; color: var(--rose-soft); }
     .top-bar { display: flex; justify-content: flex-end; margin-bottom: 1.5rem; }
-    .pill-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.625rem 1.125rem;
-      background: var(--bg-card);
-      border: 1px solid var(--line);
-      border-radius: 100px;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--linen-soft);
-      cursor: pointer;
-      letter-spacing: 0.04em;
-      transition: all 0.3s ease;
-    }
+    .pill-button { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 0.8125rem; font-weight: 500; color: var(--linen-soft); cursor: pointer; letter-spacing: 0.04em; transition: all 0.3s ease; }
     .pill-button:hover { border-color: var(--brass); color: var(--brass); }
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #7fb069;
-      box-shadow: 0 0 8px rgba(127, 176, 105, 0.6);
-    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #7fb069; box-shadow: 0 0 8px rgba(127, 176, 105, 0.6); }
     .ornament { display: flex; align-items: center; gap: 1rem; margin: 1.5rem auto; max-width: 16rem; }
     .ornament-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line-strong), transparent); }
     .ornament-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brass); }
-    .wisdom-card {
-      background: var(--bg-mid);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 2rem;
-      margin: 2rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .wisdom-card::before {
-      content: '"';
-      position: absolute;
-      top: -3rem;
-      left: 0.5rem;
-      font-family: 'Fraunces', serif;
-      font-size: 11rem;
-      color: var(--brass);
-      opacity: 0.1;
-      line-height: 1;
-      pointer-events: none;
-    }
+    .wisdom-card { background: var(--bg-mid); border: 1px solid var(--line); border-radius: 6px; padding: 2rem; margin: 2rem 0; position: relative; overflow: hidden; }
+    .wisdom-card::before { content: '"'; position: absolute; top: -3rem; left: 0.5rem; font-family: 'Fraunces', serif; font-size: 11rem; color: var(--brass); opacity: 0.1; line-height: 1; pointer-events: none; }
     .wisdom-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-    .wisdom-text {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.5rem;
-      font-style: italic;
-      font-weight: 500;
-      line-height: 1.4;
-      color: var(--linen);
-      letter-spacing: -0.01em;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-    .wisdom-source {
-      text-align: right;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--brass);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-    .icon-btn-small {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--bg-deep);
-      border: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--linen-mute);
-      transition: all 0.3s ease;
-      font-size: 1rem;
-    }
+    .wisdom-text { font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; font-style: italic; font-weight: 500; line-height: 1.4; color: var(--linen); margin-bottom: 1rem; position: relative; z-index: 1; }
+    .wisdom-source { text-align: right; font-size: 0.75rem; font-weight: 600; color: var(--brass); letter-spacing: 0.18em; text-transform: uppercase; }
+    .icon-btn-small { width: 38px; height: 38px; border-radius: 50%; background: var(--bg-deep); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--linen-mute); transition: all 0.3s ease; font-size: 1rem; }
     .icon-btn-small:hover { color: var(--brass); border-color: var(--brass); transform: rotate(180deg); }
     .sessions-header { display: flex; justify-content: space-between; align-items: baseline; margin: 2rem 0 1rem; }
-    .session-card {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      padding: 1.5rem;
-      background: var(--bg-card);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      text-align: left;
-      position: relative;
-      overflow: hidden;
-    }
+    .session-card { width: 100%; display: flex; align-items: center; gap: 1.25rem; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--line); border-radius: 6px; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); text-align: left; position: relative; overflow: hidden; }
     .session-card:hover { background: var(--bg-card-hover); border-color: var(--brass); transform: translateY(-2px); }
     .session-card:active { transform: translateY(0); }
-    .session-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--brass), transparent);
-      transform: scaleX(0);
-      transition: transform 0.4s ease;
-    }
+    .session-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--brass), transparent); transform: scaleX(0); transition: transform 0.4s ease; }
     .session-card:hover::after { transform: scaleX(1); }
-    .session-numeral {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.75rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--brass);
-      width: 2.25rem;
-      flex-shrink: 0;
-    }
+    .session-numeral { font-family: 'Fraunces', Georgia, serif; font-size: 1.75rem; font-style: italic; color: var(--brass); width: 2.25rem; flex-shrink: 0; }
     .session-content { flex: 1; min-width: 0; }
-    .session-name {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.875rem;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      color: var(--linen);
-      line-height: 1.2;
-      margin-bottom: 0.25rem;
-    }
-    .session-tagline { font-size: 0.9375rem; color: var(--linen-soft); font-weight: 400; }
-    .session-voice {
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--brass);
-      margin-top: 0.5rem;
-      display: block;
-    }
+    .session-name { font-family: 'Fraunces', Georgia, serif; font-size: 1.875rem; font-weight: 500; letter-spacing: -0.02em; color: var(--linen); line-height: 1.2; margin-bottom: 0.25rem; }
+    .session-tagline { font-size: 0.9375rem; color: var(--linen-soft); }
+    .session-voice { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); margin-top: 0.5rem; display: block; }
     .session-arrow { font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; color: var(--linen-mute); transition: all 0.3s ease; }
     .session-card:hover .session-arrow { color: var(--brass); transform: translateX(4px); }
     .session-card.sacred { background: linear-gradient(135deg, rgba(201, 164, 85, 0.12), rgba(201, 164, 85, 0.04)); border-color: rgba(201, 164, 85, 0.3); }
     .session-card.custom { background: linear-gradient(135deg, rgba(201, 122, 122, 0.12), rgba(201, 122, 122, 0.04)); border-color: rgba(201, 122, 122, 0.25); }
-    .session-card.custom .session-numeral { color: var(--rose-soft); }
-    .session-card.custom .session-voice { color: var(--rose-soft); }
-    .add-card {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      padding: 1.5rem;
-      background: transparent;
-      border: 1px dashed var(--line-strong);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-align: left;
-    }
+    .session-card.custom .session-numeral, .session-card.custom .session-voice { color: var(--rose-soft); }
+    .add-card { width: 100%; display: flex; align-items: center; gap: 1.25rem; padding: 1.5rem; background: transparent; border: 1px dashed var(--line-strong); border-radius: 6px; cursor: pointer; transition: all 0.3s ease; text-align: left; }
     .add-card:hover { border-color: var(--brass); border-style: solid; background: var(--bg-card); }
-    .add-icon {
-      font-family: 'Fraunces', serif;
-      font-size: 2rem;
-      color: var(--linen-mute);
-      width: 2.25rem;
-      text-align: center;
-      flex-shrink: 0;
-      font-weight: 300;
-    }
+    .add-icon { font-family: 'Fraunces', serif; font-size: 2rem; color: var(--linen-mute); width: 2.25rem; text-align: center; flex-shrink: 0; }
     .add-card:hover .add-icon { color: var(--brass); }
-    .add-text { font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--linen); font-style: italic; font-weight: 500; }
-    .add-hint { font-size: 0.8125rem; color: var(--linen-mute); margin-top: 0.125rem; }
-    .play-shell {
-      min-height: 100vh;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      padding: max(2rem, var(--safe-top)) 1.5rem max(2rem, var(--safe-bottom));
-    }
+    .add-text { font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--linen); font-style: italic; }
+    .add-hint { font-size: 0.8125rem; color: var(--linen-mute); }
+    .play-shell { min-height: 100vh; position: relative; z-index: 2; display: flex; flex-direction: column; padding: max(2rem, var(--safe-top)) 1.5rem max(2rem, var(--safe-bottom)); }
     .play-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-    .icon-button {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      background: var(--bg-card);
-      border: 1px solid var(--line);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      font-family: 'Fraunces', serif;
-      font-size: 1.25rem;
-      color: var(--linen);
-      transition: all 0.3s ease;
-    }
+    .icon-button { width: 44px; height: 44px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; cursor: pointer; font-family: 'Fraunces', serif; font-size: 1.25rem; color: var(--linen); transition: all 0.3s ease; }
     .icon-button:hover { border-color: var(--brass); color: var(--brass); }
-    .session-badge {
-      display: flex; align-items: center; gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: var(--bg-card);
-      border: 1px solid var(--line);
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--linen);
-    }
-    .play-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 1.75rem;
-    }
-    .breath-outer {
-      width: 280px; height: 280px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, var(--bg-card), var(--bg-mid));
-      border: 1px solid var(--line-strong);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.6), inset 0 2px 8px rgba(235, 228, 212, 0.05);
-      position: relative;
-    }
-    .breath-outer::before {
-      content: '';
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      border: 1px dashed var(--line-strong);
-      opacity: 0.5;
-    }
-    .breath-inner-text {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.5rem;
-      font-style: italic;
-      font-weight: 400;
-      color: var(--linen-soft);
-      letter-spacing: 0.02em;
-    }
-    .session-status {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(1.5rem, 4vw, 1.875rem);
-      font-style: italic;
-      font-weight: 500;
-      color: var(--linen);
-      letter-spacing: -0.01em;
-      line-height: 1.3;
-      max-width: 28rem;
-      min-height: 2.5rem;
-    }
-    .countdown {
-      font-family: 'Inter Tight', sans-serif;
-      font-size: 0.8125rem;
-      font-weight: 700;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--brass);
-    }
-    .voice-label {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.625rem 1.25rem;
-      background: var(--bg-card);
-      border: 1px solid var(--line);
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--linen);
-    }
+    .session-badge { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
+    .play-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 1.75rem; }
+    .breath-outer { width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--bg-card), var(--bg-mid)); border: 1px solid var(--line-strong); display: flex; align-items: center; justify-content: center; box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.6); position: relative; }
+    .breath-outer::before { content: ''; position: absolute; inset: -8px; border-radius: 50%; border: 1px dashed var(--line-strong); opacity: 0.5; }
+    .breath-inner-text { font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; font-style: italic; color: var(--linen-soft); }
+    .session-status { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.5rem, 4vw, 1.875rem); font-style: italic; font-weight: 500; color: var(--linen); line-height: 1.3; max-width: 28rem; min-height: 2.5rem; }
+    .voice-label { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem; background: var(--bg-card); border: 1px solid var(--line); border-radius: 100px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; }
     .audio-section { width: 100%; max-width: 32rem; padding: 0 1rem; }
     audio { width: 100%; height: 56px; border-radius: 100px; filter: invert(1) hue-rotate(180deg); }
-    .audio-help {
-      text-align: center;
-      margin-top: 0.875rem;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--linen-mute);
-    }
-    .stream-footer {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--linen-mute);
-      letter-spacing: 0.05em;
-    }
-    .home-footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-size: 0.875rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--linen-mute);
-    }
-    .error-box { background: rgba(201, 122, 122, 0.1); border: 1px solid var(--rose-soft); border-radius: 6px; padding: 1rem 1.25rem; margin-top: 1rem; max-width: 32rem; width: 100%; }
-    .error-title { font-weight: 600; color: var(--rose-soft); margin-bottom: 0.25rem; font-size: 0.875rem; }
-    .error-text { font-size: 0.8125rem; color: var(--linen-soft); line-height: 1.4; }
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
-      z-index: 50;
-      display: flex; align-items: flex-end; justify-content: center;
-      padding: 1rem;
-    }
+    .audio-help { text-align: center; margin-top: 0.875rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--linen-mute); }
+    .stream-footer { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; font-size: 0.75rem; color: var(--linen-mute); }
+    .home-footer { text-align: center; margin-top: 4rem; font-family: 'Fraunces', serif; font-style: italic; font-size: 0.875rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--linen-mute); }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); z-index: 50; display: flex; align-items: flex-end; justify-content: center; padding: 1rem; }
     @media (min-width: 640px) { .modal-overlay { align-items: center; } }
-    .modal {
-      width: 100%; max-width: 28rem;
-      background: var(--bg-mid);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 2rem;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.6);
-      color: var(--linen);
-    }
-    .modal-title { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 500; letter-spacing: -0.02em; color: var(--linen); }
+    .modal { width: 100%; max-width: 28rem; background: var(--bg-mid); border: 1px solid var(--line); border-radius: 8px; padding: 2rem; max-height: 90vh; overflow-y: auto; color: var(--linen); }
+    .modal-title { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 500; }
     .modal-close { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; color: var(--linen); }
     .form-label { display: block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--linen-mute); margin-bottom: 0.5rem; }
-    .form-input {
-      width: 100%; padding: 0.875rem 1rem;
-      background: var(--bg-deep);
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      font-family: 'Inter Tight', sans-serif;
-      font-size: 0.9375rem;
-      color: var(--linen);
-      transition: border-color 0.2s ease;
-    }
+    .form-input { width: 100%; padding: 0.875rem 1rem; background: var(--bg-deep); border: 1px solid var(--line); border-radius: 4px; font-size: 0.9375rem; color: var(--linen); }
     .form-input::placeholder { color: var(--linen-mute); }
     .form-input:focus { outline: none; border-color: var(--brass); }
     .form-hint { font-size: 0.75rem; color: var(--linen-mute); margin-top: 0.5rem; font-style: italic; }
-    .primary-btn {
-      width: 100%; padding: 1rem;
-      background: var(--brass);
-      color: var(--bg-deep);
-      border: none; border-radius: 4px;
-      font-family: 'Inter Tight', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
+    .primary-btn { width: 100%; padding: 1rem; background: var(--brass); color: var(--bg-deep); border: none; border-radius: 4px; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; }
     .primary-btn:hover { background: #d8b366; }
-    .secondary-btn {
-      width: 100%; padding: 1rem;
-      background: transparent;
-      color: var(--linen);
-      border: 1px solid var(--line-strong);
-      border-radius: 4px;
-      font-family: 'Inter Tight', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .secondary-btn:hover { border-color: var(--brass); color: var(--brass); }
     .custom-list { display: flex; flex-direction: column; gap: 0.5rem; }
     .custom-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1rem; background: var(--bg-deep); border: 1px solid var(--line); border-radius: 4px; }
     .delete-btn { padding: 0.375rem 0.75rem; background: var(--bg-card); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; color: var(--linen-mute); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
     .delete-btn:hover { background: rgba(201, 122, 122, 0.15); color: var(--rose-soft); border-color: var(--rose-soft); }
     .volume-row { display: flex; flex-direction: column; gap: 0.5rem; }
-    .volume-header { display: flex; justify-content: space-between; font-size: 0.875rem; font-weight: 600; color: var(--linen); }
+    .volume-header { display: flex; justify-content: space-between; font-size: 0.875rem; font-weight: 600; }
     input[type="range"] { width: 100%; height: 4px; background: var(--line-strong); border-radius: 2px; outline: none; appearance: none; -webkit-appearance: none; cursor: pointer; }
-    input[type="range"]::-webkit-slider-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--brass); cursor: pointer; border: 2px solid var(--bg-deep); box-shadow: 0 2px 4px rgba(0,0,0,0.4); appearance: none; -webkit-appearance: none; }
+    input[type="range"]::-webkit-slider-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--brass); cursor: pointer; border: 2px solid var(--bg-deep); appearance: none; -webkit-appearance: none; }
   </style>
 </head>
 <body>
 
+<!-- HIDDEN BACKGROUND FLUTE - layered separately, can't interfere with voice -->
+<audio id="fluteBackground" loop preload="auto" style="display:none">
+  <source src="https://res.cloudinary.com/dgvrjgorn/video/upload/v1777437029/danamusic-relaxing-flute-meditation-416756_eri5yl.mp3" type="audio/mpeg" />
+</audio>
+
 <div id="app"></div>
 
 <script>
-// ✨ Cache-buster: each URL gets a unique tag so iPhone can't confuse files
-const BASE_URLS = {
-  flute: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777437029/danamusic-relaxing-flute-meditation-416756_eri5yl.mp3",
-  morning: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777436656/ElevenLabs_2026-04-29T03_41_47_Victoria_-_Warm_Trustworthy_and_Relatable_pvc_sp108_s100_sb100_se100_b_m2_tljw3f.mp3",
-  afternoon: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777436656/ElevenLabs_2026-04-29T03_42_51_Victoria_-_Warm_Trustworthy_and_Relatable_pvc_sp108_s100_sb100_se100_b_m2_wvo0mh.mp3",
-  evening: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777436654/ElevenLabs_2026-04-29T03_43_31_Victoria_-_Warm_Trustworthy_and_Relatable_pvc_sp108_s100_sb100_se100_b_m2_yjm6ys.mp3",
-  bonus: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777436641/ElevenLabs_2026-04-29T03_19_28_Roger_-_Laid-Back_Casual_Resonant_pre_sp100_s50_sb75_se0_b_m2_tjzmxa.mp3",
-  sacred: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777519525/%E5%8D%97%E6%97%A0%E6%9C%AC%E5%B8%88%E9%87%8A%E8%BF%A6%E7%89%9F%E5%B0%BC%E4%BD%9B_%E4%BD%9B%E5%8F%B7_Group_Performance_Version_%E8%A1%A8%E6%BC%94%E7%89%88_xfaryg.mp3",
-};
-
-// Add unique cache-busting parameter to each URL
-const VERSION = Date.now();
-const CLOUD_URLS = {
-  flute: `${BASE_URLS.flute}?key=flute&v=${VERSION}`,
-  morning: `${BASE_URLS.morning}?key=morning&v=${VERSION}`,
-  afternoon: `${BASE_URLS.afternoon}?key=afternoon&v=${VERSION}`,
-  evening: `${BASE_URLS.evening}?key=evening&v=${VERSION}`,
-  bonus: `${BASE_URLS.bonus}?key=bonus&v=${VERSION}`,
-  sacred: `${BASE_URLS.sacred}?key=sacred&v=${VERSION}`,
-};
-
-const BUILT_IN_SESSIONS = [
-  { id: "morning", numeral: "I", name: "Morning", tagline: "To activate wealth & vitality", voiceUrl: CLOUD_URLS.morning, voiceLabel: "Victoria", builtIn: true, type: "affirmation" },
-  { id: "afternoon", numeral: "II", name: "Afternoon", tagline: "A pause for power & focus", voiceUrl: CLOUD_URLS.afternoon, voiceLabel: "Victoria", builtIn: true, type: "affirmation" },
-  { id: "evening", numeral: "III", name: "Evening", tagline: "Rest, heal & multiply", voiceUrl: CLOUD_URLS.evening, voiceLabel: "Victoria", builtIn: true, type: "affirmation" },
-  { id: "bonus", numeral: "IV", name: "Grounding", tagline: "Deep grounding & inner power", voiceUrl: CLOUD_URLS.bonus, voiceLabel: "Roger", builtIn: true, type: "affirmation" },
-  { id: "sacred", numeral: "V", name: "Sacred", tagline: "南无本师释迦牟尼佛 · Devotional chant", voiceUrl: CLOUD_URLS.sacred, voiceLabel: "Buddhist Chant", builtIn: true, type: "devotional" },
+const SESSIONS = [
+  { id: "morning", numeral: "I", name: "Morning", tagline: "To activate wealth & vitality", url: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777436656/ElevenLabs_2026-04-29T03_41_47_Victoria_-_Warm_Trustworthy_and_Relatable_pvc_sp108_s100_sb100_se100_b_m2_tljw3f.mp3", voiceLabel: "Victoria", type: "affirmation" },
+  { id: "afternoon", numeral: "II", name: "Afternoon", tagline: "A pause for power & focus", url: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777436656/ElevenLabs_2026-04-29T03_42_51_Victoria_-_Warm_Trustworthy_and_Relatable_pvc_sp108_s100_sb100_se100_b_m2_wvo0mh.mp3", voiceLabel: "Victoria", type: "affirmation" },
+  { id: "evening", numeral: "III", name: "Evening", tagline: "Rest, heal & multiply", url: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777436654/ElevenLabs_2026-04-29T03_43_31_Victoria_-_Warm_Trustworthy_and_Relatable_pvc_sp108_s100_sb100_se100_b_m2_yjm6ys.mp3", voiceLabel: "Victoria", type: "affirmation" },
+  { id: "bonus", numeral: "IV", name: "Grounding", tagline: "Deep grounding & inner power", url: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777436641/ElevenLabs_2026-04-29T03_19_28_Roger_-_Laid-Back_Casual_Resonant_pre_sp100_s50_sb75_se0_b_m2_tjzmxa.mp3", voiceLabel: "Roger", type: "affirmation" },
+  { id: "sacred", numeral: "V", name: "Sacred", tagline: "南无本师释迦牟尼佛 · Devotional chant", url: "https://res.cloudinary.com/dgvrjgorn/video/upload/v1777519525/%E5%8D%97%E6%97%A0%E6%9C%AC%E5%B8%88%E9%87%8A%E8%BF%A6%E7%89%9F%E5%B0%BC%E4%BD%9B_%E4%BD%9B%E5%8F%B7_Group_Performance_Version_%E8%A1%A8%E6%BC%94%E7%89%88_xfaryg.mp3", voiceLabel: "Buddhist Chant", type: "devotional" },
 ];
 
 const DAILY_WISDOM = [
@@ -548,62 +201,37 @@ function getTodaysWisdom() {
   return DAILY_WISDOM[dayOfYear % DAILY_WISDOM.length];
 }
 
-const state = {
-  activeSession: null,
-  customSessions: JSON.parse(localStorage.getItem("affirmation-custom") || "[]"),
-  fluteVol: parseInt(localStorage.getItem("flute-vol") || "45"),
-  voiceVol: parseInt(localStorage.getItem("voice-vol") || "95"),
-  todaysQuote: getTodaysWisdom(),
-  showSetup: false,
-  showAdd: false,
-  isPlaying: false,
-  introTimer: null,
-  voiceStartTimer: null,
-  outroTimer: null,
-};
-
-function saveCustom() { localStorage.setItem("affirmation-custom", JSON.stringify(state.customSessions)); }
-function saveVolumes() { localStorage.setItem("flute-vol", state.fluteVol); localStorage.setItem("voice-vol", state.voiceVol); }
 function romanize(num) {
   const lookup = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
   let result = '';
   for (const i in lookup) { while (num >= lookup[i]) { result += i; num -= lookup[i]; } }
   return result;
 }
+
+const state = {
+  activeSession: null,
+  customSessions: JSON.parse(localStorage.getItem("affirmation-custom") || "[]"),
+  fluteVol: parseInt(localStorage.getItem("flute-vol") || "40"),
+  voiceVol: parseInt(localStorage.getItem("voice-vol") || "95"),
+  todaysQuote: getTodaysWisdom(),
+  showSetup: false,
+  showAdd: false,
+};
+
+function saveCustom() { localStorage.setItem("affirmation-custom", JSON.stringify(state.customSessions)); }
+function saveVolumes() { localStorage.setItem("flute-vol", state.fluteVol); localStorage.setItem("voice-vol", state.voiceVol); }
+
 function getAllSessions() {
   let custom = state.customSessions.map((s, i) => ({
     ...s,
-    numeral: romanize(BUILT_IN_SESSIONS.length + i + 1),
-    builtIn: false,
+    numeral: romanize(SESSIONS.length + i + 1),
     type: "affirmation",
+    isCustom: true,
   }));
-  return [...BUILT_IN_SESSIONS, ...custom];
+  return [...SESSIONS, ...custom];
 }
 
-let fluteAudio = null;
-let voiceAudio = null;
-
-function initFlute() {
-  if (!fluteAudio) {
-    fluteAudio = new Audio(CLOUD_URLS.flute);
-    fluteAudio.loop = true;
-  }
-  fluteAudio.volume = state.fluteVol / 100;
-}
-
-function clearAllTimers() {
-  if (state.introTimer) { clearInterval(state.introTimer); state.introTimer = null; }
-  if (state.voiceStartTimer) { clearTimeout(state.voiceStartTimer); state.voiceStartTimer = null; }
-  if (state.outroTimer) { clearInterval(state.outroTimer); state.outroTimer = null; }
-}
-
-function stopAllAudio() {
-  clearAllTimers();
-  if (fluteAudio) { fluteAudio.pause(); fluteAudio.currentTime = 0; }
-  if (voiceAudio) voiceAudio.pause();
-  state.isPlaying = false;
-}
-
+const fluteEl = document.getElementById("fluteBackground");
 const app = document.getElementById("app");
 
 function renderHome() {
@@ -612,8 +240,7 @@ function renderHome() {
     <div class="app-shell">
       <div class="top-bar fade-up stagger-1">
         <button onclick="state.showSetup = true; renderHome();" class="pill-button">
-          ⚙ Settings
-          <span class="status-dot"></span>
+          ⚙ Settings <span class="status-dot"></span>
         </button>
       </div>
       <div class="fade-up stagger-2" style="text-align: center; margin-bottom: 1rem;">
@@ -624,9 +251,7 @@ function renderHome() {
           <div class="ornament-dot"></div>
           <div class="ornament-line"></div>
         </div>
-        <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 1.125rem; color: var(--linen-soft); letter-spacing: 0.02em;">
-          Your sanctuary for affirmations
-        </p>
+        <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 1.125rem; color: var(--linen-soft);">Your sanctuary for affirmations</p>
       </div>
       <div class="wisdom-card fade-up stagger-3">
         <div class="wisdom-header">
@@ -643,9 +268,8 @@ function renderHome() {
       <div style="display: flex; flex-direction: column; gap: 0.75rem;">
         ${sessions.map((s, i) => {
           const isSacred = s.id === "sacred";
-          const isCustom = !s.builtIn;
           return `
-            <button onclick="enterSession('${s.id}')" class="session-card fade-up stagger-${Math.min(i + 5, 8)} ${isSacred ? 'sacred' : ''} ${isCustom ? 'custom' : ''}">
+            <button onclick="enterSession('${s.id}')" class="session-card fade-up stagger-${Math.min(i + 5, 8)} ${isSacred ? 'sacred' : ''} ${s.isCustom ? 'custom' : ''}">
               <div class="session-numeral">${s.numeral}</div>
               <div class="session-content">
                 <div class="session-name">${s.name}</div>
@@ -684,9 +308,7 @@ function renderSetupModal() {
             <span class="status-dot"></span>
             <span style="font-size: 0.875rem; font-weight: 600;">Cloud Audio</span>
           </div>
-          <p style="font-size: 0.8125rem; color: var(--linen-soft); line-height: 1.4;">
-            All voices and flute load from your Cloudinary cloud with unique cache keys.
-          </p>
+          <p style="font-size: 0.8125rem; color: var(--linen-soft);">Voices and flute load from your Cloudinary cloud.</p>
         </div>
         ${state.customSessions.length > 0 ? `
           <div style="margin-bottom: 1.5rem;">
@@ -694,7 +316,7 @@ function renderSetupModal() {
             <div class="custom-list">
               ${state.customSessions.map(s => `
                 <div class="custom-item">
-                  <span style="color: var(--rose-soft); font-weight: 600; font-family: 'Fraunces', serif; font-style: italic;">${s.name.charAt(0)}</span>
+                  <span style="color: var(--rose-soft); font-family: 'Fraunces', serif; font-style: italic;">${s.name.charAt(0)}</span>
                   <span style="flex: 1; font-size: 0.9375rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${s.name}</span>
                   <button onclick="removeCustom('${s.id}')" class="delete-btn">remove</button>
                 </div>
@@ -703,20 +325,12 @@ function renderSetupModal() {
           </div>
         ` : ""}
         <div style="margin-bottom: 1.5rem;">
-          <div class="form-label" style="margin-bottom: 1rem;">Default Volumes</div>
-          <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <div class="volume-row">
-              <div class="volume-header">
-                <span>Flute</span><span id="fluteVolDisplay">${state.fluteVol}%</span>
-              </div>
-              <input type="range" min="0" max="100" value="${state.fluteVol}" oninput="state.fluteVol = +this.value; saveVolumes(); if(fluteAudio) fluteAudio.volume = this.value/100; document.getElementById('fluteVolDisplay').textContent = this.value + '%';" />
+          <div class="form-label" style="margin-bottom: 1rem;">Background Flute Volume</div>
+          <div class="volume-row">
+            <div class="volume-header">
+              <span>Flute</span><span id="fluteVolDisplay">${state.fluteVol}%</span>
             </div>
-            <div class="volume-row">
-              <div class="volume-header">
-                <span>Voice</span><span id="voiceVolDisplay">${state.voiceVol}%</span>
-              </div>
-              <input type="range" min="0" max="100" value="${state.voiceVol}" oninput="state.voiceVol = +this.value; saveVolumes(); if(voiceAudio) voiceAudio.volume = this.value/100; document.getElementById('voiceVolDisplay').textContent = this.value + '%';" />
-            </div>
+            <input type="range" min="0" max="100" value="${state.fluteVol}" oninput="state.fluteVol = +this.value; saveVolumes(); fluteEl.volume = this.value/100; document.getElementById('fluteVolDisplay').textContent = this.value + '%';" />
           </div>
         </div>
         <button onclick="state.showSetup = false; renderHome();" class="primary-btn">Done</button>
@@ -739,7 +353,7 @@ function renderAddModal() {
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           <div>
             <label class="form-label">Name</label>
-            <input id="newName" type="text" class="form-input" placeholder="e.g. Healing, Sleep, Confidence" />
+            <input id="newName" type="text" class="form-input" placeholder="e.g. Healing, Sleep" />
           </div>
           <div>
             <label class="form-label">Tagline</label>
@@ -748,7 +362,7 @@ function renderAddModal() {
           <div>
             <label class="form-label">Audio URL</label>
             <input id="newUrl" type="url" class="form-input" placeholder="https://res.cloudinary.com/..." />
-            <p class="form-hint">Upload to your Cloudinary, copy the URL, paste it here.</p>
+            <p class="form-hint">Upload to your Cloudinary, copy the URL, paste here.</p>
           </div>
         </div>
         <button onclick="addCustomSession()" class="primary-btn" style="margin-top: 1.5rem;">Add to Sanctuary</button>
@@ -775,9 +389,8 @@ function renderSession() {
             ${isSacred ? `<div style="font-size: 5rem; color: var(--brass);">✦</div>` : `<span id="breathText" class="breath-inner-text">breathe in</span>`}
           </div>
         </div>
-        <div class="fade-up stagger-3" style="display: flex; flex-direction: column; gap: 0.875rem; align-items: center;">
+        <div class="fade-up stagger-3">
           <p id="sessionStatus" class="session-status">${isSacred ? "May all beings be at peace" : "Press play to begin"}</p>
-          <p id="countdown" class="countdown pulse-anim" style="display: none;"></p>
         </div>
         <div class="fade-up stagger-4">
           <div class="voice-label">
@@ -787,14 +400,9 @@ function renderSession() {
         </div>
         <div class="audio-section fade-up stagger-5">
           <audio id="voiceAudio" controls preload="auto">
-            <source src="${session.voiceUrl}" type="audio/mpeg" />
-            <source src="${session.voiceUrl}" type="audio/mp3" />
+            <source src="${session.url}" type="audio/mpeg" />
           </audio>
-          <p class="audio-help">${isSacred ? "— listen with reverence —" : "— 10s flute · voice · 10s flute —"}</p>
-        </div>
-        <div id="errorBox" class="error-box" style="display: none;">
-          <div class="error-title">Couldn't play audio</div>
-          <div class="error-text" id="errorText"></div>
+          <p class="audio-help">${isSacred ? "— listen with reverence —" : "— flute layers in automatically —"}</p>
         </div>
         <div class="stream-footer fade-up stagger-6">
           <div class="status-dot"></div>
@@ -804,27 +412,31 @@ function renderSession() {
     </div>
   `;
 
-  voiceAudio = document.getElementById("voiceAudio");
-  voiceAudio.volume = state.voiceVol / 100;
+  const voiceEl = document.getElementById("voiceAudio");
+  if (fluteEl) fluteEl.volume = state.fluteVol / 100;
 
-  voiceAudio.addEventListener("play", () => handleVoicePlay(isSacred));
-  voiceAudio.addEventListener("pause", () => {
-    if (voiceAudio.ended) return;
-    handleVoicePause();
-  });
-  voiceAudio.addEventListener("ended", () => handleVoiceEnded(isSacred));
-  voiceAudio.addEventListener("error", (e) => {
-    const err = e.target.error;
-    let msg = "Unknown error";
-    if (err) {
-      switch(err.code) {
-        case 1: msg = "Loading aborted"; break;
-        case 2: msg = "Network error — check connection"; break;
-        case 3: msg = "Audio file is corrupted"; break;
-        case 4: msg = "Format not supported"; break;
-      }
+  // SIMPLE LOGIC: when voice plays, start flute. When voice pauses/ends, stop flute.
+  // No 10-second intro tricks. No interception. No complex state.
+  voiceEl.addEventListener("play", () => {
+    document.getElementById("sessionStatus").textContent = isSacred ? "🪷 May this practice bring peace" : "Listen, breathe, receive";
+    if (!isSacred && fluteEl) {
+      fluteEl.currentTime = 0;
+      fluteEl.play().catch(() => {});
     }
-    showError(msg);
+  });
+
+  voiceEl.addEventListener("pause", () => {
+    if (voiceEl.ended) return;
+    document.getElementById("sessionStatus").textContent = "Paused";
+    if (fluteEl) fluteEl.pause();
+  });
+
+  voiceEl.addEventListener("ended", () => {
+    document.getElementById("sessionStatus").textContent = isSacred ? "🙏 Namo Buddhaya" : "Complete ✦";
+    if (fluteEl) {
+      fluteEl.pause();
+      fluteEl.currentTime = 0;
+    }
   });
 
   if (!isSacred) {
@@ -835,98 +447,6 @@ function renderSession() {
       const el = document.getElementById("breathText");
       if (el) el.textContent = `breathe ${breathing}`;
     }, 4500);
-  }
-}
-
-function showError(msg) {
-  const box = document.getElementById("errorBox");
-  const text = document.getElementById("errorText");
-  if (box) box.style.display = "block";
-  if (text) text.textContent = msg;
-}
-
-function handleVoicePlay(isSacred) {
-  if (state.isPlaying) return;
-  state.isPlaying = true;
-  const box = document.getElementById("errorBox");
-  if (box) box.style.display = "none";
-
-  if (isSacred) return;
-
-  voiceAudio.pause();
-  initFlute();
-  fluteAudio.currentTime = 0;
-  fluteAudio.play().catch(() => {});
-
-  const statusEl = document.getElementById("sessionStatus");
-  const countdownEl = document.getElementById("countdown");
-  if (statusEl) statusEl.textContent = "Settling into stillness…";
-  if (countdownEl) {
-    countdownEl.style.display = "inline-block";
-    let secondsLeft = 10;
-    countdownEl.textContent = `Voice begins in ${secondsLeft}s`;
-    state.introTimer = setInterval(() => {
-      secondsLeft--;
-      if (secondsLeft > 0) {
-        countdownEl.textContent = `Voice begins in ${secondsLeft}s`;
-      } else {
-        countdownEl.style.display = "none";
-        clearInterval(state.introTimer);
-        state.introTimer = null;
-      }
-    }, 1000);
-  }
-
-  state.voiceStartTimer = setTimeout(() => {
-    if (!state.isPlaying) return;
-    voiceAudio.play().then(() => {
-      const el = document.getElementById("sessionStatus");
-      if (el) el.textContent = "Listen, breathe, receive";
-    }).catch(err => {
-      showError(err.message || "Could not start voice");
-      state.isPlaying = false;
-    });
-    state.voiceStartTimer = null;
-  }, 10000);
-}
-
-function handleVoicePause() {
-  clearAllTimers();
-  if (fluteAudio) fluteAudio.pause();
-  state.isPlaying = false;
-  const el = document.getElementById("sessionStatus");
-  const cd = document.getElementById("countdown");
-  if (el) el.textContent = "Paused";
-  if (cd) cd.style.display = "none";
-}
-
-function handleVoiceEnded(isSacred) {
-  state.isPlaying = false;
-  const statusEl = document.getElementById("sessionStatus");
-  if (isSacred) {
-    if (statusEl) statusEl.textContent = "🙏 Namo Buddhaya";
-    return;
-  }
-  if (statusEl) statusEl.textContent = "Carrying you gently…";
-  const countdownEl = document.getElementById("countdown");
-  if (countdownEl) {
-    countdownEl.style.display = "inline-block";
-    let secondsLeft = 10;
-    countdownEl.textContent = `Closing in ${secondsLeft}s`;
-    if (state.outroTimer) clearInterval(state.outroTimer);
-    state.outroTimer = setInterval(() => {
-      secondsLeft--;
-      if (secondsLeft > 0) {
-        countdownEl.textContent = `Closing in ${secondsLeft}s`;
-      } else {
-        countdownEl.style.display = "none";
-        clearInterval(state.outroTimer);
-        state.outroTimer = null;
-        if (fluteAudio) { fluteAudio.pause(); fluteAudio.currentTime = 0; }
-        const el = document.getElementById("sessionStatus");
-        if (el) el.textContent = "Complete ✦";
-      }
-    }, 1000);
   }
 }
 
@@ -948,7 +468,7 @@ function addCustomSession() {
     id: `custom-${Date.now()}`,
     name,
     tagline: tagline || "Custom affirmation",
-    voiceUrl: url,
+    url,
     voiceLabel: "Custom",
   });
   saveCustom();
@@ -965,13 +485,15 @@ function removeCustom(id) {
 
 function enterSession(id) {
   state.activeSession = id;
-  state.isPlaying = false;
   renderSession();
 }
 
 function exitSession() {
   state.activeSession = null;
-  stopAllAudio();
+  if (fluteEl) {
+    fluteEl.pause();
+    fluteEl.currentTime = 0;
+  }
   if (window.breathInterval) clearInterval(window.breathInterval);
   renderHome();
 }

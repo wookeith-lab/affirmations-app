@@ -6,11 +6,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Sanctuary" />
-  <meta name="theme-color" content="#1a1014" />
+  <meta name="theme-color" content="#7c2d3a" />
   <title>Sanctuary — I am rich. I am healthy.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
   <script>
     if (window.console && console.warn) {
       const origWarn = console.warn;
@@ -25,26 +25,18 @@
       --safe-top: env(safe-area-inset-top);
       --safe-bottom: env(safe-area-inset-bottom);
 
-      /* PROFESSIONAL PALETTE: Aubergine + cream + gold */
-      --bg-base: #f5efe6;
-      --bg-elevated: #faf6ef;
-      --ink-primary: #1a1014;
-      --ink-secondary: #3d2934;
-      --ink-tertiary: #6b5560;
-      --ink-muted: #9a8590;
-      --accent-gold: #b8893a;
-      --accent-gold-bright: #d4a155;
-      --accent-plum: #5d2e3f;
-      --accent-rose: #a04060;
-      --line-soft: #e6d9c8;
-      --line-medium: #c9b8a3;
+      /* RICH JEWEL TONES */
+      --gold: #d4a142;
+      --gold-bright: #f0c574;
+      --plum: #5d2e3f;
+      --plum-deep: #3d1a28;
+      --rose: #c44569;
+      --terracotta: #d97757;
     }
 
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
-      background: var(--bg-base);
-      color: var(--ink-primary);
       font-family: 'Inter Tight', -apple-system, sans-serif;
       -webkit-font-smoothing: antialiased;
       overscroll-behavior: none;
@@ -53,25 +45,14 @@
 
     .display-font { font-family: 'Fraunces', Georgia, serif; }
 
-    /* Subtle grain texture for warmth */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
-      opacity: 0.03;
-      pointer-events: none;
-      z-index: 1;
-    }
-
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.95; }
-      50% { transform: scale(1.04); opacity: 1; }
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
     }
 
     @keyframes breathe {
@@ -84,7 +65,12 @@
       100% { background-position: 200% center; }
     }
 
-    .fade-up { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+    @keyframes float-slow {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -30px); }
+    }
+
+    .fade-up { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
     .breath-circle { animation: breathe 9s ease-in-out infinite; }
 
     .stagger-1 { animation-delay: 0.05s; }
@@ -94,8 +80,57 @@
     .stagger-5 { animation-delay: 0.45s; }
     .stagger-6 { animation-delay: 0.55s; }
     .stagger-7 { animation-delay: 0.65s; }
+    .stagger-8 { animation-delay: 0.75s; }
 
-    /* APP CONTAINER */
+    /* ═══════════════════════════════════════════
+       HOME SCREEN - Rich sunset gradient
+       ═══════════════════════════════════════════ */
+    .home-bg {
+      background:
+        radial-gradient(ellipse at 20% 0%, #ff8c42 0%, transparent 45%),
+        radial-gradient(ellipse at 80% 20%, #c44569 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 80%, #5d2e3f 0%, transparent 60%),
+        radial-gradient(ellipse at 0% 100%, #d4a142 0%, transparent 50%),
+        linear-gradient(180deg, #2d1418 0%, #5d2e3f 50%, #2d1418 100%);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Floating orbs for depth */
+    .home-bg::before, .home-bg::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .home-bg::before {
+      width: 400px;
+      height: 400px;
+      background: rgba(244, 165, 96, 0.3);
+      top: -100px;
+      right: -100px;
+      animation: float-slow 12s ease-in-out infinite;
+    }
+    .home-bg::after {
+      width: 500px;
+      height: 500px;
+      background: rgba(196, 69, 105, 0.25);
+      bottom: -150px;
+      left: -150px;
+      animation: float-slow 15s ease-in-out infinite reverse;
+    }
+
+    /* Subtle texture overlay */
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .app-shell {
       position: relative;
       z-index: 2;
@@ -104,148 +139,213 @@
       padding: max(2rem, var(--safe-top)) 1.5rem max(2rem, var(--safe-bottom));
     }
 
-    /* HEADER with serif eyebrow */
+    /* HERO TYPOGRAPHY */
     .eyebrow {
       font-family: 'Inter Tight', sans-serif;
       font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.32em;
+      font-weight: 700;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--accent-gold);
+      color: #f0c574;
     }
 
     .display-title {
       font-family: 'Fraunces', Georgia, serif;
-      font-weight: 500;
-      font-size: clamp(3.5rem, 12vw, 5.5rem);
+      font-weight: 600;
+      font-size: clamp(4rem, 13vw, 6rem);
       line-height: 0.95;
-      letter-spacing: -0.03em;
-      color: var(--ink-primary);
+      letter-spacing: -0.035em;
+      color: #fef9f3;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.3);
     }
 
     .display-title em {
       font-style: italic;
-      font-weight: 400;
-      color: var(--accent-rose);
+      font-weight: 500;
+      background: linear-gradient(90deg, #f0c574, #f4a560, #f0c574);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 6s linear infinite;
     }
 
-    /* DECORATIVE ORNAMENT */
+    .subtitle {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: rgba(254, 249, 243, 0.85);
+      letter-spacing: 0.02em;
+      margin-top: 0.875rem;
+    }
+
     .ornament {
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin: 1.25rem 0;
+      max-width: 18rem;
+      margin: 1.5rem auto;
     }
     .ornament-line {
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--line-medium), transparent);
+      background: linear-gradient(90deg, transparent, rgba(240, 197, 116, 0.5), transparent);
     }
     .ornament-dot {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--accent-gold);
+      background: #f0c574;
+      box-shadow: 0 0 12px rgba(240, 197, 116, 0.6);
     }
 
-    /* SESSION CARD */
+    /* SESSION CARDS - vibrant per-session colors */
     .session-card {
       width: 100%;
       display: flex;
       align-items: center;
       gap: 1.25rem;
-      padding: 1.25rem 1.5rem;
-      background: var(--bg-elevated);
-      border: 1px solid var(--line-soft);
-      border-radius: 4px;
+      padding: 1.5rem;
+      background: rgba(254, 249, 243, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(254, 249, 243, 0.15);
+      border-radius: 20px;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       text-align: left;
       position: relative;
       overflow: hidden;
     }
-    .session-card:hover {
-      border-color: var(--accent-gold);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px -12px rgba(26, 16, 20, 0.18);
-    }
-    .session-card:active {
-      transform: translateY(0);
-    }
-    .session-card::after {
+
+    .session-card::before {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
-      transform: scaleX(0);
-      transition: transform 0.4s ease;
+      inset: 0;
+      background: var(--card-glow, transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
-    .session-card:hover::after {
-      transform: scaleX(1);
+
+    .session-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      border-color: rgba(240, 197, 116, 0.5);
+      box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.4);
     }
+    .session-card:hover::before { opacity: 0.15; }
+    .session-card:active { transform: translateY(0); }
+
+    .session-card.morning { --card-glow: linear-gradient(135deg, #f4a560, #f0c574); }
+    .session-card.afternoon { --card-glow: linear-gradient(135deg, #4ec5d4, #6db4d4); }
+    .session-card.evening { --card-glow: linear-gradient(135deg, #7c5fab, #5d4a8f); }
+    .session-card.bonus { --card-glow: linear-gradient(135deg, #d44569, #c44569); }
+    .session-card.sacred { --card-glow: linear-gradient(135deg, #f0c574, #d4a142); }
 
     .session-numeral {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.625rem;
-      font-weight: 400;
+      font-size: 2rem;
+      font-weight: 500;
       font-style: italic;
-      color: var(--accent-gold);
-      width: 2rem;
+      color: #f0c574;
+      width: 2.5rem;
       flex-shrink: 0;
+      text-align: center;
+      text-shadow: 0 2px 10px rgba(240, 197, 116, 0.3);
     }
 
-    .session-content { flex: 1; min-width: 0; }
+    .session-content { flex: 1; min-width: 0; position: relative; z-index: 1; }
 
     .session-name {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.875rem;
-      font-weight: 500;
+      font-size: 2.125rem;
+      font-weight: 600;
       letter-spacing: -0.02em;
-      color: var(--ink-primary);
-      line-height: 1.2;
+      color: #fef9f3;
+      line-height: 1.15;
       margin-bottom: 0.25rem;
     }
 
     .session-tagline {
-      font-size: 0.9375rem;
-      color: var(--ink-tertiary);
+      font-size: 1rem;
+      color: rgba(254, 249, 243, 0.75);
       font-weight: 500;
       letter-spacing: 0.01em;
     }
 
     .session-voice {
-      font-size: 0.6875rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--accent-gold);
-      margin-top: 0.375rem;
-      display: block;
+      color: #f0c574;
+      margin-top: 0.5rem;
+      display: inline-block;
     }
 
     .session-arrow {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.5rem;
-      color: var(--ink-muted);
+      font-size: 1.875rem;
+      color: rgba(240, 197, 116, 0.6);
       transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
     .session-card:hover .session-arrow {
-      color: var(--accent-gold);
-      transform: translateX(4px);
+      color: #f0c574;
+      transform: translateX(6px);
     }
 
-    /* SACRED CARD - special treatment */
-    .session-card.sacred {
-      background: linear-gradient(135deg, #faf3e6 0%, #f5e8d0 100%);
-      border-color: #e8d4a8;
+    /* SECTIONS LABEL */
+    .sections-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding: 0 0.5rem;
     }
-    .session-card.sacred .session-numeral { color: var(--accent-gold-bright); }
-    .session-card.sacred:hover { border-color: var(--accent-gold-bright); }
+    .sections-label span {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(240, 197, 116, 0.7);
+    }
 
-    /* SESSION (PLAY) SCREEN */
+    /* ═══════════════════════════════════════════
+       PLAY SCREEN BACKGROUNDS - Per session
+       ═══════════════════════════════════════════ */
+    .play-bg-morning {
+      background:
+        radial-gradient(ellipse at 30% 20%, #ffb85c 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, #f0c574 0%, transparent 50%),
+        linear-gradient(160deg, #f4a560 0%, #d97757 50%, #c44569 100%);
+    }
+    .play-bg-afternoon {
+      background:
+        radial-gradient(ellipse at 30% 20%, #6dd5e0 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, #4ec5d4 0%, transparent 50%),
+        linear-gradient(160deg, #5fb3d4 0%, #4a8fb5 50%, #2d5f80 100%);
+    }
+    .play-bg-evening {
+      background:
+        radial-gradient(ellipse at 30% 20%, #9d7fc7 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, #4a3a6f 0%, transparent 50%),
+        linear-gradient(160deg, #5d4a8f 0%, #3d2a5f 50%, #1a0f30 100%);
+    }
+    .play-bg-bonus {
+      background:
+        radial-gradient(ellipse at 30% 20%, #f48fb1 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, #c44569 0%, transparent 50%),
+        linear-gradient(160deg, #d44569 0%, #a82d4d 50%, #5d1a30 100%);
+    }
+    .play-bg-sacred {
+      background:
+        radial-gradient(ellipse at 30% 20%, #ffd58c 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, #d4a142 0%, transparent 50%),
+        linear-gradient(160deg, #e8b554 0%, #c4922a 50%, #6f5212 100%);
+    }
+
     .play-shell {
       min-height: 100vh;
       position: relative;
@@ -263,38 +363,42 @@
     }
 
     .icon-button {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: var(--bg-elevated);
-      border: 1px solid var(--line-soft);
+      background: rgba(254, 249, 243, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(254, 249, 243, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       font-family: 'Fraunces', serif;
-      font-size: 1.25rem;
-      color: var(--ink-secondary);
+      font-size: 1.5rem;
+      color: #fef9f3;
       transition: all 0.3s ease;
     }
     .icon-button:hover {
-      border-color: var(--accent-gold);
-      color: var(--accent-gold);
+      background: rgba(254, 249, 243, 0.25);
+      transform: scale(1.05);
     }
 
     .session-badge {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: var(--bg-elevated);
-      border: 1px solid var(--line-soft);
+      padding: 0.625rem 1.25rem;
+      background: rgba(254, 249, 243, 0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(254, 249, 243, 0.3);
       border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--ink-secondary);
+      color: #fef9f3;
     }
 
     .play-content {
@@ -304,78 +408,97 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      gap: 1.5rem;
+      gap: 1.75rem;
     }
 
-    /* BREATHING CIRCLE - refined */
     .breath-outer {
       width: 280px;
       height: 280px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), var(--bg-elevated));
-      border: 1px solid var(--line-medium);
+      background: radial-gradient(circle at 30% 30%, rgba(254, 249, 243, 0.95), rgba(254, 249, 243, 0.7));
+      border: 2px solid rgba(254, 249, 243, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 30px 80px -30px rgba(93, 46, 63, 0.3), inset 0 2px 8px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.4), inset 0 4px 20px rgba(255, 255, 255, 0.6);
       position: relative;
     }
     .breath-outer::before {
       content: '';
       position: absolute;
-      inset: -8px;
+      inset: -16px;
       border-radius: 50%;
-      border: 1px dashed var(--line-medium);
-      opacity: 0.5;
+      border: 1px dashed rgba(254, 249, 243, 0.4);
+    }
+    .breath-outer::after {
+      content: '';
+      position: absolute;
+      inset: -32px;
+      border-radius: 50%;
+      border: 1px solid rgba(254, 249, 243, 0.2);
     }
 
     .breath-inner-text {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       font-style: italic;
-      font-weight: 400;
-      color: var(--ink-secondary);
+      font-weight: 500;
+      color: #5d2e3f;
       letter-spacing: 0.02em;
     }
 
     .session-status {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(1.5rem, 4vw, 1.875rem);
+      font-size: clamp(1.625rem, 4.5vw, 2.125rem);
       font-style: italic;
       font-weight: 500;
-      color: var(--ink-primary);
+      color: #fef9f3;
       letter-spacing: -0.01em;
       line-height: 1.3;
       max-width: 28rem;
-      min-height: 2.5rem;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
     }
 
     .countdown {
       font-family: 'Inter Tight', sans-serif;
-      font-size: 0.8125rem;
-      font-weight: 600;
+      font-size: 0.875rem;
+      font-weight: 700;
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--accent-gold);
-      animation: pulse 2.5s ease-in-out infinite;
+      color: #fef9f3;
+      animation: pulse-soft 2.5s ease-in-out infinite;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.5rem 1.25rem;
+      border-radius: 100px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .voice-label {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.625rem 1.25rem;
-      background: var(--bg-elevated);
-      border: 1px solid var(--line-soft);
+      gap: 0.625rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(254, 249, 243, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(254, 249, 243, 0.4);
       border-radius: 100px;
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       font-weight: 700;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--ink-secondary);
+      color: #fef9f3;
     }
 
-    /* AUDIO PLAYER */
+    .voice-label-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #f0c574;
+      box-shadow: 0 0 12px rgba(240, 197, 116, 0.8);
+    }
+
     .audio-section {
       width: 100%;
       max-width: 32rem;
@@ -389,36 +512,41 @@
     }
 
     audio::-webkit-media-controls-panel {
-      background-color: var(--bg-elevated);
+      background-color: rgba(254, 249, 243, 0.95);
+      border-radius: 100px;
     }
 
     .audio-help {
       text-align: center;
-      margin-top: 0.875rem;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--ink-tertiary);
+      color: rgba(254, 249, 243, 0.85);
     }
 
-    /* Footer */
     .stream-footer {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1.125rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 100px;
       font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--ink-tertiary);
+      font-weight: 600;
+      color: rgba(254, 249, 243, 0.9);
       letter-spacing: 0.05em;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .stream-dot {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: #4a9b6e;
+      background: #4ade80;
+      box-shadow: 0 0 8px #4ade80;
     }
 
     .home-footer {
@@ -426,40 +554,16 @@
       margin-top: 4rem;
       font-family: 'Fraunces', serif;
       font-style: italic;
-      font-size: 0.9375rem;
+      font-size: 1rem;
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--ink-muted);
+      color: rgba(240, 197, 116, 0.7);
     }
-
-    /* Sacred theming for session view */
-    .sacred-bg {
-      background:
-        radial-gradient(ellipse at 50% 10%, rgba(212, 161, 85, 0.15), transparent 60%),
-        radial-gradient(ellipse at 0% 90%, rgba(184, 137, 58, 0.1), transparent 60%);
-    }
-
-    /* Affirmation theming - subtle warm wash */
-    .affirmation-bg {
-      background:
-        radial-gradient(ellipse at 30% 0%, rgba(160, 64, 96, 0.08), transparent 50%),
-        radial-gradient(ellipse at 70% 100%, rgba(184, 137, 58, 0.08), transparent 50%);
-    }
-
-    /* Section Number on play screen */
-    .session-roman {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-size: 1rem;
-      letter-spacing: 0.5em;
-      color: var(--accent-gold);
-      text-transform: uppercase;
-    }
-
   </style>
 </head>
 <body>
 
+<div class="grain-overlay"></div>
 <div id="app"></div>
 
 <script>
@@ -473,7 +577,7 @@ const CLOUD_URLS = {
 };
 
 const SESSIONS = [
-  { id: "morning", numeral: "I", name: "Morning", tagline: "To activate wealth & vitality", voiceUrl: CLOUD_URLS.morning, voiceLabel: "Victoria" },
+  { id: "morning", numeral: "I", name: "Morning", tagline: "Activate wealth & vitality", voiceUrl: CLOUD_URLS.morning, voiceLabel: "Victoria" },
   { id: "afternoon", numeral: "II", name: "Afternoon", tagline: "A pause for power & focus", voiceUrl: CLOUD_URLS.afternoon, voiceLabel: "Victoria" },
   { id: "evening", numeral: "III", name: "Evening", tagline: "Rest, heal & multiply", voiceUrl: CLOUD_URLS.evening, voiceLabel: "Victoria" },
   { id: "bonus", numeral: "IV", name: "Grounding", tagline: "Deep grounding & inner power", voiceUrl: CLOUD_URLS.bonus, voiceLabel: "Roger" },
@@ -502,7 +606,7 @@ function initFlute() {
 function clearAllTimers() {
   if (state.introTimer) { clearInterval(state.introTimer); state.introTimer = null; }
   if (state.voiceStartTimer) { clearTimeout(state.voiceStartTimer); state.voiceStartTimer = null; }
-  if (state.outroTimer) { clearTimeout(state.outroTimer); state.outroTimer = null; }
+  if (state.outroTimer) { clearInterval(state.outroTimer); state.outroTimer = null; }
 }
 
 function stopAllAudio() {
@@ -521,45 +625,43 @@ const app = document.getElementById("app");
 
 function renderHome() {
   app.innerHTML = `
-    <div class="app-shell">
+    <div class="home-bg">
+      <div class="app-shell">
 
-      <div class="fade-up stagger-1" style="text-align: center; margin-bottom: 2.5rem;">
-        <div class="eyebrow" style="margin-bottom: 1.5rem;">— Daily Practice —</div>
-        <h1 class="display-title">
-          I am rich.<br/><em>I am healthy.</em>
-        </h1>
-        <div class="ornament" style="max-width: 16rem; margin-left: auto; margin-right: auto; margin-top: 1.5rem;">
-          <div class="ornament-line"></div>
-          <div class="ornament-dot"></div>
-          <div class="ornament-line"></div>
+        <div class="fade-up stagger-1" style="text-align: center; margin-bottom: 3rem;">
+          <div class="eyebrow" style="margin-bottom: 1.5rem;">— Daily Practice —</div>
+          <h1 class="display-title">
+            I am rich.<br/><em>I am healthy.</em>
+          </h1>
+          <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-dot"></div>
+            <div class="ornament-line"></div>
+          </div>
+          <p class="subtitle">Your sanctuary for affirmations</p>
         </div>
-        <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 1.125rem; color: var(--ink-tertiary); letter-spacing: 0.02em; margin-top: 0.5rem;">
-          Your sanctuary for affirmations
-        </p>
-      </div>
 
-      <div class="fade-up stagger-2" style="margin-bottom: 1rem;">
-        <div class="eyebrow" style="margin-bottom: 0.875rem;">Sessions · ${SESSIONS.length}</div>
-      </div>
+        <div class="sections-label fade-up stagger-2">
+          <span>Sessions · ${SESSIONS.length}</span>
+          <span style="color: rgba(240, 197, 116, 0.5);">— ✦ —</span>
+        </div>
 
-      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-        ${SESSIONS.map((s, i) => {
-          const isSacred = s.id === "sacred";
-          return `
-            <button onclick="enterSession('${s.id}')" class="session-card fade-up stagger-${i + 3} ${isSacred ? 'sacred' : ''}">
+        <div style="display: flex; flex-direction: column; gap: 0.875rem;">
+          ${SESSIONS.map((s, i) => `
+            <button onclick="enterSession('${s.id}')" class="session-card ${s.id} fade-up stagger-${i + 3}">
               <div class="session-numeral">${s.numeral}</div>
               <div class="session-content">
                 <div class="session-name">${s.name}</div>
                 <div class="session-tagline">${s.tagline}</div>
-                <span class="session-voice">${s.voiceLabel}</span>
+                <span class="session-voice">— ${s.voiceLabel} —</span>
               </div>
               <span class="session-arrow">→</span>
             </button>
-          `;
-        }).join("")}
-      </div>
+          `).join("")}
+        </div>
 
-      <p class="home-footer fade-up stagger-7">— and so it is —</p>
+        <p class="home-footer fade-up stagger-8">— and so it is —</p>
+      </div>
     </div>
   `;
 }
@@ -570,55 +672,57 @@ function renderSession() {
   const isSacred = session.id === "sacred";
 
   app.innerHTML = `
-    <div class="play-shell ${isSacred ? 'sacred-bg' : 'affirmation-bg'}">
+    <div class="play-bg-${session.id}">
+      <div class="play-shell">
 
-      <div class="play-header fade-up stagger-1">
-        <button onclick="exitSession()" class="icon-button" aria-label="Back">‹</button>
-        <div class="session-badge">${session.numeral} · ${session.name}</div>
-        <div class="icon-button" style="border-color: transparent; background: transparent;"></div>
-      </div>
+        <div class="play-header fade-up stagger-1">
+          <button onclick="exitSession()" class="icon-button" aria-label="Back">‹</button>
+          <div class="session-badge">${session.numeral} · ${session.name}</div>
+          <div class="icon-button" style="border-color: transparent; background: transparent; pointer-events: none;"></div>
+        </div>
 
-      <div class="play-content">
+        <div class="play-content">
 
-        <div class="fade-up stagger-2">
-          <div class="breath-outer breath-circle">
-            ${isSacred
-              ? `<div style="font-size: 5rem;">✦</div>`
-              : `<span id="breathText" class="breath-inner-text">breathe in</span>`
-            }
+          <div class="fade-up stagger-2">
+            <div class="breath-outer breath-circle">
+              ${isSacred
+                ? `<div style="font-size: 5rem; color: #d4a142;">✦</div>`
+                : `<span id="breathText" class="breath-inner-text">breathe in</span>`
+              }
+            </div>
           </div>
-        </div>
 
-        <div class="fade-up stagger-3" style="display: flex; flex-direction: column; gap: 0.875rem; align-items: center;">
-          <p id="sessionStatus" class="session-status">
-            ${isSacred ? "May all beings be at peace" : "Press play to begin"}
-          </p>
-          <p id="countdown" class="countdown" style="display: none;"></p>
-        </div>
-
-        <div class="fade-up stagger-4">
-          <div class="voice-label">
-            <span style="color: var(--accent-gold);">●</span>
-            ${session.voiceLabel}
+          <div class="fade-up stagger-3" style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+            <p id="sessionStatus" class="session-status">
+              ${isSacred ? "May all beings be at peace" : "Press play to begin"}
+            </p>
+            <p id="countdown" class="countdown" style="display: none;"></p>
           </div>
-        </div>
 
-        <div class="audio-section fade-up stagger-5">
-          <audio id="voiceAudio" controls preload="auto">
-            <source src="${session.voiceUrl}" type="audio/mpeg" />
-            <source src="${session.voiceUrl}" type="audio/mp3" />
-            Your browser doesn't support audio.
-          </audio>
-          <p class="audio-help">
-            ${isSacred ? "— listen with reverence —" : "— 10s flute · voice · 10s flute —"}
-          </p>
-        </div>
+          <div class="fade-up stagger-4">
+            <div class="voice-label">
+              <span class="voice-label-dot"></span>
+              ${session.voiceLabel}
+            </div>
+          </div>
 
-        <div class="stream-footer fade-up stagger-6">
-          <div class="stream-dot"></div>
-          Streaming from cloud
-        </div>
+          <div class="audio-section fade-up stagger-5">
+            <audio id="voiceAudio" controls preload="auto">
+              <source src="${session.voiceUrl}" type="audio/mpeg" />
+              <source src="${session.voiceUrl}" type="audio/mp3" />
+              Your browser doesn't support audio.
+            </audio>
+            <p class="audio-help">
+              ${isSacred ? "— listen with reverence —" : "— 10s flute · voice · 10s flute —"}
+            </p>
+          </div>
 
+          <div class="stream-footer fade-up stagger-6">
+            <div class="stream-dot"></div>
+            Streaming from cloud
+          </div>
+
+        </div>
       </div>
     </div>
   `;
@@ -643,20 +747,13 @@ function renderSession() {
   }
 }
 
-// When the user taps play on the audio element, intercept it for affirmations.
-// For sacred chant, just play directly.
 function handleVoicePlay(isSacred) {
-  if (state.isPlaying) return; // already in flow
+  if (state.isPlaying) return;
   state.isPlaying = true;
 
-  if (isSacred) {
-    // Play directly, no flute layer
-    return;
-  }
+  if (isSacred) return;
 
-  // For affirmations: pause voice, start flute, play voice after 10s
   voiceAudio.pause();
-
   initFlute();
   fluteAudio.currentTime = 0;
   fluteAudio.play().catch(() => {});
@@ -695,7 +792,6 @@ function handleVoicePlay(isSacred) {
 }
 
 function handleVoicePause() {
-  // User manually paused
   clearAllTimers();
   if (fluteAudio) fluteAudio.pause();
   state.isPlaying = false;
@@ -714,14 +810,13 @@ function handleVoiceEnded(isSacred) {
     return;
   }
 
-  // 10-second flute outro for affirmation sessions
   if (statusEl) statusEl.textContent = "Carrying you gently…";
   const countdownEl = document.getElementById("countdown");
   if (countdownEl) {
     countdownEl.style.display = "inline-block";
     let secondsLeft = 10;
     countdownEl.textContent = `Closing in ${secondsLeft}s`;
-    if (state.outroTimer) clearTimeout(state.outroTimer);
+    if (state.outroTimer) clearInterval(state.outroTimer);
     state.outroTimer = setInterval(() => {
       secondsLeft--;
       if (secondsLeft > 0) {

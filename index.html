@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Sanctuary" />
-  <meta name="theme-color" content="#1e1338" />
+  <meta name="theme-color" content="#0e0823" />
   <meta http-equiv="Cache-Control" content="no-cache" />
   <title>Sanctuary — Daily Affirmations</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,26 +17,43 @@
       --safe-top: env(safe-area-inset-top);
       --safe-bottom: env(safe-area-inset-bottom);
 
-      /* VIBRANT JEWEL TONE PALETTE */
-      --bg-base: #1e1338;          /* Deep amethyst */
-      --bg-elevated: #2a1d4a;      /* Slightly brighter purple */
-      --bg-card: rgba(255, 255, 255, 0.06);
+      /* RICHER, DEEPER jewel tones */
+      --bg-base: #0e0823;          /* Deeper midnight amethyst */
+      --bg-elevated: #1a1238;
+      --bg-card: rgba(255, 255, 255, 0.05);
       --bg-card-hover: rgba(255, 255, 255, 0.10);
 
       --ink-bright: #ffffff;
-      --ink-soft: #e8e0f5;         /* Soft lavender white */
-      --ink-mute: #b5a8d4;         /* Muted purple */
+      --ink-soft: #ede4f7;
+      --ink-mute: #a896c4;
 
-      --gold: #ffc857;             /* Vibrant gold */
-      --gold-glow: #ffdb8c;
-      --coral: #ff6b6b;            /* Warm coral */
-      --coral-soft: #ff9b9b;
-      --teal: #4ecdc4;             /* Bright teal */
-      --magenta: #c44bb8;          /* Magenta */
-      --orange: #ff8c42;           /* Sunset orange */
+      /* Antique gold (richer) */
+      --gold: #d4a83c;
+      --gold-bright: #f4c558;
+      --gold-glow: rgba(244, 197, 88, 0.55);
 
-      --line: rgba(255, 255, 255, 0.12);
-      --line-strong: rgba(255, 255, 255, 0.25);
+      /* Deep ruby coral */
+      --ruby: #d63d5e;
+      --ruby-soft: #e8607f;
+      --ruby-glow: rgba(232, 96, 127, 0.45);
+
+      /* Royal sapphire teal */
+      --sapphire: #2d8a8a;
+      --sapphire-bright: #4eb8b8;
+      --sapphire-glow: rgba(78, 184, 184, 0.45);
+
+      /* Deep magenta */
+      --magenta: #a3358e;
+      --magenta-bright: #c44bb8;
+      --magenta-glow: rgba(196, 75, 184, 0.4);
+
+      /* Warm amber sunset */
+      --amber: #e07c33;
+      --amber-bright: #ff9a4a;
+      --amber-glow: rgba(255, 154, 74, 0.45);
+
+      --line: rgba(255, 255, 255, 0.10);
+      --line-strong: rgba(255, 255, 255, 0.22);
     }
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -47,131 +64,218 @@
       -webkit-font-smoothing: antialiased;
       overscroll-behavior: none;
       min-height: 100vh;
-      font-size: 17px;
+      font-size: 18px;          /* BIGGER base */
+      overflow-x: hidden;
     }
 
-    /* VIBRANT GRADIENT BACKGROUND - alive with color */
-    body::before {
-      content: '';
+    /* === AURORA BOREALIS animated gradient === */
+    .aurora {
+      position: fixed;
+      inset: -20%;
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(60px);
+    }
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      mix-blend-mode: screen;
+      opacity: 0.55;
+    }
+    .aurora-1 {
+      width: 60vw; height: 60vw;
+      background: radial-gradient(circle, var(--ruby), transparent 70%);
+      top: -10%; left: -10%;
+      animation: aurora-drift-1 22s ease-in-out infinite;
+    }
+    .aurora-2 {
+      width: 70vw; height: 70vw;
+      background: radial-gradient(circle, var(--magenta), transparent 70%);
+      top: 10%; right: -20%;
+      animation: aurora-drift-2 28s ease-in-out infinite;
+    }
+    .aurora-3 {
+      width: 65vw; height: 65vw;
+      background: radial-gradient(circle, var(--sapphire), transparent 70%);
+      bottom: -20%; left: 20%;
+      animation: aurora-drift-3 30s ease-in-out infinite;
+    }
+    .aurora-4 {
+      width: 50vw; height: 50vw;
+      background: radial-gradient(circle, var(--gold), transparent 70%);
+      bottom: 10%; right: 10%;
+      animation: aurora-drift-4 26s ease-in-out infinite;
+      opacity: 0.35;
+    }
+
+    @keyframes aurora-drift-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%      { transform: translate(8vw, 12vh) scale(1.15); }
+      66%      { transform: translate(-4vw, 6vh) scale(0.95); }
+    }
+    @keyframes aurora-drift-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%      { transform: translate(-10vw, 8vh) scale(1.2); }
+    }
+    @keyframes aurora-drift-3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      40%      { transform: translate(6vw, -10vh) scale(1.1); }
+      80%      { transform: translate(-6vw, -4vh) scale(1); }
+    }
+    @keyframes aurora-drift-4 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%      { transform: translate(-8vw, -10vh) scale(1.25); }
+    }
+
+    /* Dark vignette over aurora to keep contrast for text */
+    .vignette {
       position: fixed;
       inset: 0;
-      background:
-        radial-gradient(ellipse at 15% 0%, rgba(255, 107, 107, 0.25), transparent 50%),
-        radial-gradient(ellipse at 85% 20%, rgba(196, 75, 184, 0.22), transparent 50%),
-        radial-gradient(ellipse at 50% 100%, rgba(78, 205, 196, 0.18), transparent 60%),
-        radial-gradient(ellipse at 0% 70%, rgba(255, 200, 87, 0.12), transparent 50%);
-      pointer-events: none;
       z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(14, 8, 35, 0.65) 100%);
     }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes breathe { 0%, 100% { transform: scale(0.92); } 50% { transform: scale(1.08); } }
+    /* === FLOATING GOLD DUST PARTICLES === */
+    .dust {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .dust-particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--gold-bright);
+      box-shadow: 0 0 6px var(--gold-glow);
+      opacity: 0;
+      animation: dust-float 18s linear infinite;
+    }
+    @keyframes dust-float {
+      0%   { transform: translateY(110vh) translateX(0) scale(0.5); opacity: 0; }
+      10%  { opacity: 0.7; }
+      50%  { transform: translateY(50vh) translateX(20px) scale(1); }
+      90%  { opacity: 0.7; }
+      100% { transform: translateY(-10vh) translateX(-20px) scale(0.5); opacity: 0; }
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .fade-up { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+    .fade-in { animation: fadeIn 0.6s ease backwards; }
+    .stagger-1 { animation-delay: 0.05s; }
+    .stagger-2 { animation-delay: 0.15s; }
+    .stagger-3 { animation-delay: 0.28s; }
+    .stagger-4 { animation-delay: 0.41s; }
+    .stagger-5 { animation-delay: 0.54s; }
+    .stagger-6 { animation-delay: 0.67s; }
+    .stagger-7 { animation-delay: 0.80s; }
+    .stagger-8 { animation-delay: 0.93s; }
+
     @keyframes shimmer {
       0% { background-position: -200% center; }
       100% { background-position: 200% center; }
     }
-    .fade-up { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
-    .breath-circle { animation: breathe 9s ease-in-out infinite; }
-    .stagger-1 { animation-delay: 0.05s; }
-    .stagger-2 { animation-delay: 0.15s; }
-    .stagger-3 { animation-delay: 0.25s; }
-    .stagger-4 { animation-delay: 0.35s; }
-    .stagger-5 { animation-delay: 0.45s; }
-    .stagger-6 { animation-delay: 0.55s; }
-    .stagger-7 { animation-delay: 0.65s; }
-    .stagger-8 { animation-delay: 0.75s; }
 
-    .app-shell { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; padding: max(2rem, var(--safe-top)) 1.5rem max(2rem, var(--safe-bottom)); }
+    .app-shell { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; padding: max(2rem, var(--safe-top)) 1.5rem max(2rem, var(--safe-bottom)); }
 
+    /* BIGGER eyebrow */
     .eyebrow {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.34em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-bright);
     }
 
-    /* SHIMMERING gold-to-coral display title */
+    /* MUCH BIGGER display title */
     .display-title {
       font-family: 'Fraunces', Georgia, serif;
       font-weight: 600;
-      font-size: clamp(4rem, 14vw, 6.5rem);
-      line-height: 0.95;
-      letter-spacing: -0.03em;
+      font-size: clamp(5rem, 16vw, 7.5rem);
+      line-height: 0.93;
+      letter-spacing: -0.035em;
       color: var(--ink-bright);
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
     }
     .display-title em {
       font-style: italic;
       font-weight: 500;
-      background: linear-gradient(90deg, var(--coral), var(--gold), var(--coral));
-      background-size: 200% auto;
+      background: linear-gradient(90deg, var(--ruby-soft), var(--gold-bright), var(--amber-bright), var(--ruby-soft));
+      background-size: 300% auto;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: shimmer 6s ease-in-out infinite;
+      animation: shimmer 8s ease-in-out infinite;
     }
 
-    .top-bar { display: flex; justify-content: flex-end; margin-bottom: 1.5rem; }
+    .top-bar { display: flex; justify-content: flex-end; margin-bottom: 1.75rem; }
 
     .pill-button {
       display: inline-flex;
       align-items: center;
-      gap: 0.625rem;
-      padding: 0.875rem 1.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
+      gap: 0.75rem;
+      padding: 1rem 1.625rem;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--line-strong);
       border-radius: 100px;
-      font-size: 1rem;
+      font-size: 1.0625rem;
       font-weight: 600;
       color: var(--ink-bright);
       cursor: pointer;
-      letter-spacing: 0.03em;
-      transition: all 0.3s ease;
+      letter-spacing: 0.04em;
+      transition: all 0.4s ease;
     }
     .pill-button:hover {
       border-color: var(--gold);
-      background: rgba(255, 200, 87, 0.15);
+      background: rgba(212, 168, 60, 0.18);
+      box-shadow: 0 0 24px var(--gold-glow);
     }
 
     .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--sapphire-bright);
+      box-shadow: 0 0 14px var(--sapphire-glow);
+    }
+
+    .ornament { display: flex; align-items: center; gap: 1.25rem; margin: 2rem auto; max-width: 22rem; }
+    .ornament-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .ornament-dot {
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: var(--teal);
-      box-shadow: 0 0 12px rgba(78, 205, 196, 0.8);
-    }
-
-    .ornament { display: flex; align-items: center; gap: 1rem; margin: 1.75rem auto; max-width: 18rem; }
-    .ornament-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-    .ornament-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 12px rgba(255, 200, 87, 0.7);
+      background: var(--gold-bright);
+      box-shadow: 0 0 14px var(--gold-glow);
     }
 
     .subtitle {
       font-family: 'Fraunces', serif;
       font-style: italic;
-      font-size: 1.375rem;
+      font-size: 1.5rem;
       color: var(--ink-soft);
       letter-spacing: 0.02em;
       font-weight: 500;
     }
 
-    /* WISDOM CARD - vibrant purple to coral gradient */
+    /* WISDOM CARD */
     .wisdom-card {
-      background: linear-gradient(135deg, rgba(196, 75, 184, 0.2), rgba(255, 107, 107, 0.15));
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 200, 87, 0.3);
-      border-radius: 12px;
-      padding: 2.25rem;
-      margin: 2rem 0;
+      background: linear-gradient(135deg, rgba(196, 75, 184, 0.18), rgba(232, 96, 127, 0.12));
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(244, 197, 88, 0.32);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin: 2.25rem 0;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 12px 40px -12px rgba(196, 75, 184, 0.3);
+      box-shadow: 0 20px 60px -20px rgba(196, 75, 184, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     .wisdom-card::before {
       content: '"';
@@ -179,207 +283,234 @@
       top: -3.5rem;
       left: 0.5rem;
       font-family: 'Fraunces', serif;
-      font-size: 13rem;
-      color: var(--gold);
-      opacity: 0.18;
+      font-size: 14rem;
+      color: var(--gold-bright);
+      opacity: 0.16;
       line-height: 1;
       pointer-events: none;
     }
-    .wisdom-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+    .wisdom-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
     .wisdom-text {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.75rem;
+      font-size: 1.875rem;
       font-style: italic;
       font-weight: 500;
       line-height: 1.4;
       color: var(--ink-bright);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
       position: relative;
       z-index: 1;
     }
     .wisdom-source {
       text-align: right;
-      font-size: 0.875rem;
+      font-size: 0.9375rem;
       font-weight: 700;
-      color: var(--gold);
+      color: var(--gold-bright);
       letter-spacing: 0.18em;
       text-transform: uppercase;
     }
     .icon-btn-small {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.10);
       border: 1px solid var(--line-strong);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       color: var(--ink-soft);
-      transition: all 0.3s ease;
-      font-size: 1.25rem;
+      transition: all 0.4s ease;
+      font-size: 1.375rem;
     }
-    .icon-btn-small:hover { color: var(--gold); border-color: var(--gold); transform: rotate(180deg); background: rgba(255, 200, 87, 0.15); }
+    .icon-btn-small:hover {
+      color: var(--gold-bright);
+      border-color: var(--gold-bright);
+      transform: rotate(180deg);
+      background: rgba(244, 197, 88, 0.18);
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
 
-    .sessions-header { display: flex; justify-content: space-between; align-items: baseline; margin: 2rem 0 1.25rem; }
+    .sessions-header { display: flex; justify-content: space-between; align-items: baseline; margin: 2.25rem 0 1.5rem; }
 
-    /* SESSION CARDS - each one with its own VIBRANT theme */
+    /* SESSION CARDS */
     .session-card {
       width: 100%;
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      padding: 1.75rem;
+      gap: 1.625rem;
+      padding: 2rem;
       background: var(--bg-card);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 16px;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       text-align: left;
       position: relative;
       overflow: hidden;
     }
-    .session-card:hover {
-      background: var(--bg-card-hover);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.4);
+    .session-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
     }
-    .session-card:active { transform: translateY(0); }
+    .session-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.5);
+    }
+    .session-card:hover::before { opacity: 1; }
+    .session-card:active { transform: translateY(-1px); }
     .session-card::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0; height: 3px;
       transform: scaleX(0);
-      transition: transform 0.4s ease;
+      transition: transform 0.5s ease;
     }
     .session-card:hover::after { transform: scaleX(1); }
 
-    /* MORNING - sunrise (coral + gold) */
-    .session-card[data-id="morning"] { border-color: rgba(255, 140, 66, 0.3); }
-    .session-card[data-id="morning"]:hover { border-color: var(--orange); background: linear-gradient(135deg, rgba(255, 140, 66, 0.18), rgba(255, 200, 87, 0.08)); }
-    .session-card[data-id="morning"] .session-numeral { color: var(--orange); }
-    .session-card[data-id="morning"] .session-voice { color: var(--orange); }
-    .session-card[data-id="morning"]::after { background: linear-gradient(90deg, transparent, var(--orange), transparent); }
+    /* MORNING — sunset amber */
+    .session-card[data-id="morning"] { border-color: rgba(255, 154, 74, 0.32); }
+    .session-card[data-id="morning"]:hover { border-color: var(--amber-bright); box-shadow: 0 24px 60px -20px var(--amber-glow), 0 0 30px var(--amber-glow); }
+    .session-card[data-id="morning"]::before { background: linear-gradient(135deg, rgba(255, 154, 74, 0.20), transparent 60%); }
+    .session-card[data-id="morning"] .session-numeral { color: var(--amber-bright); }
+    .session-card[data-id="morning"] .session-voice { color: var(--amber-bright); }
+    .session-card[data-id="morning"]::after { background: linear-gradient(90deg, transparent, var(--amber-bright), transparent); }
 
-    /* AFTERNOON - bright teal */
-    .session-card[data-id="afternoon"] { border-color: rgba(78, 205, 196, 0.3); }
-    .session-card[data-id="afternoon"]:hover { border-color: var(--teal); background: linear-gradient(135deg, rgba(78, 205, 196, 0.18), rgba(78, 205, 196, 0.04)); }
-    .session-card[data-id="afternoon"] .session-numeral { color: var(--teal); }
-    .session-card[data-id="afternoon"] .session-voice { color: var(--teal); }
-    .session-card[data-id="afternoon"]::after { background: linear-gradient(90deg, transparent, var(--teal), transparent); }
+    /* AFTERNOON — sapphire teal */
+    .session-card[data-id="afternoon"] { border-color: rgba(78, 184, 184, 0.32); }
+    .session-card[data-id="afternoon"]:hover { border-color: var(--sapphire-bright); box-shadow: 0 24px 60px -20px var(--sapphire-glow), 0 0 30px var(--sapphire-glow); }
+    .session-card[data-id="afternoon"]::before { background: linear-gradient(135deg, rgba(78, 184, 184, 0.20), transparent 60%); }
+    .session-card[data-id="afternoon"] .session-numeral { color: var(--sapphire-bright); }
+    .session-card[data-id="afternoon"] .session-voice { color: var(--sapphire-bright); }
+    .session-card[data-id="afternoon"]::after { background: linear-gradient(90deg, transparent, var(--sapphire-bright), transparent); }
 
-    /* EVENING - deep magenta */
-    .session-card[data-id="evening"] { border-color: rgba(196, 75, 184, 0.3); }
-    .session-card[data-id="evening"]:hover { border-color: var(--magenta); background: linear-gradient(135deg, rgba(196, 75, 184, 0.18), rgba(196, 75, 184, 0.04)); }
-    .session-card[data-id="evening"] .session-numeral { color: var(--magenta); }
-    .session-card[data-id="evening"] .session-voice { color: var(--magenta); }
-    .session-card[data-id="evening"]::after { background: linear-gradient(90deg, transparent, var(--magenta), transparent); }
+    /* EVENING — deep magenta */
+    .session-card[data-id="evening"] { border-color: rgba(196, 75, 184, 0.32); }
+    .session-card[data-id="evening"]:hover { border-color: var(--magenta-bright); box-shadow: 0 24px 60px -20px var(--magenta-glow), 0 0 30px var(--magenta-glow); }
+    .session-card[data-id="evening"]::before { background: linear-gradient(135deg, rgba(196, 75, 184, 0.20), transparent 60%); }
+    .session-card[data-id="evening"] .session-numeral { color: var(--magenta-bright); }
+    .session-card[data-id="evening"] .session-voice { color: var(--magenta-bright); }
+    .session-card[data-id="evening"]::after { background: linear-gradient(90deg, transparent, var(--magenta-bright), transparent); }
 
-    /* BONUS - warm coral */
-    .session-card[data-id="bonus"] { border-color: rgba(255, 107, 107, 0.3); }
-    .session-card[data-id="bonus"]:hover { border-color: var(--coral); background: linear-gradient(135deg, rgba(255, 107, 107, 0.18), rgba(255, 107, 107, 0.04)); }
-    .session-card[data-id="bonus"] .session-numeral { color: var(--coral); }
-    .session-card[data-id="bonus"] .session-voice { color: var(--coral); }
-    .session-card[data-id="bonus"]::after { background: linear-gradient(90deg, transparent, var(--coral), transparent); }
+    /* BONUS — ruby coral */
+    .session-card[data-id="bonus"] { border-color: rgba(232, 96, 127, 0.32); }
+    .session-card[data-id="bonus"]:hover { border-color: var(--ruby-soft); box-shadow: 0 24px 60px -20px var(--ruby-glow), 0 0 30px var(--ruby-glow); }
+    .session-card[data-id="bonus"]::before { background: linear-gradient(135deg, rgba(232, 96, 127, 0.20), transparent 60%); }
+    .session-card[data-id="bonus"] .session-numeral { color: var(--ruby-soft); }
+    .session-card[data-id="bonus"] .session-voice { color: var(--ruby-soft); }
+    .session-card[data-id="bonus"]::after { background: linear-gradient(90deg, transparent, var(--ruby-soft), transparent); }
 
-    /* SACRED - radiant gold */
+    /* SACRED — radiant gold */
     .session-card[data-id="sacred"] {
-      background: linear-gradient(135deg, rgba(255, 200, 87, 0.15), rgba(255, 200, 87, 0.04));
-      border-color: rgba(255, 200, 87, 0.4);
+      background: linear-gradient(135deg, rgba(244, 197, 88, 0.14), rgba(212, 168, 60, 0.04));
+      border-color: rgba(244, 197, 88, 0.42);
     }
-    .session-card[data-id="sacred"]:hover { border-color: var(--gold); background: linear-gradient(135deg, rgba(255, 200, 87, 0.25), rgba(255, 200, 87, 0.08)); }
-    .session-card[data-id="sacred"] .session-numeral { color: var(--gold); }
-    .session-card[data-id="sacred"] .session-voice { color: var(--gold); }
-    .session-card[data-id="sacred"]::after { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .session-card[data-id="sacred"]:hover { border-color: var(--gold-bright); box-shadow: 0 24px 60px -20px var(--gold-glow), 0 0 40px var(--gold-glow); }
+    .session-card[data-id="sacred"]::before { background: linear-gradient(135deg, rgba(244, 197, 88, 0.22), transparent 60%); }
+    .session-card[data-id="sacred"] .session-numeral { color: var(--gold-bright); }
+    .session-card[data-id="sacred"] .session-voice { color: var(--gold-bright); }
+    .session-card[data-id="sacred"]::after { background: linear-gradient(90deg, transparent, var(--gold-bright), transparent); }
 
-    /* CUSTOM cards */
-    .session-card.custom { border-color: rgba(255, 155, 155, 0.3); }
-    .session-card.custom:hover { border-color: var(--coral-soft); background: linear-gradient(135deg, rgba(255, 155, 155, 0.15), rgba(255, 155, 155, 0.04)); }
-    .session-card.custom .session-numeral { color: var(--coral-soft); }
-    .session-card.custom .session-voice { color: var(--coral-soft); }
-    .session-card.custom::after { background: linear-gradient(90deg, transparent, var(--coral-soft), transparent); }
+    .session-card.custom { border-color: rgba(232, 96, 127, 0.32); }
+    .session-card.custom:hover { border-color: var(--ruby-soft); box-shadow: 0 24px 60px -20px var(--ruby-glow); }
+    .session-card.custom::before { background: linear-gradient(135deg, rgba(232, 96, 127, 0.18), transparent 60%); }
+    .session-card.custom .session-numeral { color: var(--ruby-soft); }
+    .session-card.custom .session-voice { color: var(--ruby-soft); }
+    .session-card.custom::after { background: linear-gradient(90deg, transparent, var(--ruby-soft), transparent); }
 
+    /* BIGGER session content */
     .session-numeral {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 2.25rem;
+      font-size: 2.625rem;
       font-style: italic;
       font-weight: 500;
-      width: 2.75rem;
+      width: 3.25rem;
       flex-shrink: 0;
-      transition: color 0.3s ease;
+      transition: color 0.4s ease;
+      position: relative;
+      z-index: 1;
     }
-    .session-content { flex: 1; min-width: 0; }
+    .session-content { flex: 1; min-width: 0; position: relative; z-index: 1; }
     .session-name {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 2.25rem;
+      font-size: 2.5rem;
       font-weight: 500;
       letter-spacing: -0.02em;
       color: var(--ink-bright);
-      line-height: 1.15;
-      margin-bottom: 0.375rem;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
     }
     .session-tagline {
-      font-size: 1.0625rem;
+      font-size: 1.125rem;
       color: var(--ink-soft);
       font-weight: 500;
       line-height: 1.4;
     }
     .session-voice {
-      font-size: 0.8125rem;
+      font-size: 0.875rem;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-top: 0.625rem;
+      margin-top: 0.75rem;
       display: block;
-      transition: color 0.3s ease;
+      transition: color 0.4s ease;
     }
     .session-arrow {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.875rem;
+      font-size: 2.125rem;
       color: var(--ink-mute);
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
     }
-    .session-card:hover .session-arrow { color: var(--ink-bright); transform: translateX(4px); }
+    .session-card:hover .session-arrow { color: var(--ink-bright); transform: translateX(6px); }
 
     .add-card {
       width: 100%;
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      padding: 1.75rem;
+      gap: 1.625rem;
+      padding: 2rem;
       background: transparent;
       border: 1.5px dashed var(--line-strong);
-      border-radius: 12px;
+      border-radius: 16px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       text-align: left;
     }
     .add-card:hover {
-      border-color: var(--gold);
+      border-color: var(--gold-bright);
       border-style: solid;
-      background: rgba(255, 200, 87, 0.08);
+      background: rgba(244, 197, 88, 0.08);
+      box-shadow: 0 0 30px var(--gold-glow);
     }
     .add-icon {
       font-family: 'Fraunces', serif;
-      font-size: 2.5rem;
+      font-size: 2.875rem;
       color: var(--ink-mute);
-      width: 2.75rem;
+      width: 3.25rem;
       text-align: center;
       flex-shrink: 0;
       font-weight: 500;
     }
-    .add-card:hover .add-icon { color: var(--gold); }
+    .add-card:hover .add-icon { color: var(--gold-bright); }
     .add-text {
       font-family: 'Fraunces', serif;
-      font-size: 1.875rem;
+      font-size: 2.125rem;
       color: var(--ink-bright);
       font-style: italic;
       font-weight: 500;
     }
-    .add-hint { font-size: 1rem; color: var(--ink-mute); margin-top: 0.25rem; }
+    .add-hint { font-size: 1.0625rem; color: var(--ink-mute); margin-top: 0.375rem; }
 
-    /* PLAY SCREEN with session-specific gradient backgrounds */
+    /* PLAY SCREEN */
     .play-shell {
       min-height: 100vh;
       position: relative;
@@ -387,143 +518,152 @@
       display: flex;
       flex-direction: column;
       padding: max(2rem, var(--safe-top)) 1.5rem max(2rem, var(--safe-bottom));
-    }
-
-    .play-shell.morning::before {
-      content: ''; position: fixed; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(255, 140, 66, 0.4), transparent 60%), radial-gradient(ellipse at 50% 100%, rgba(255, 200, 87, 0.2), transparent 60%);
-      pointer-events: none; z-index: -1;
-    }
-    .play-shell.afternoon::before {
-      content: ''; position: fixed; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(78, 205, 196, 0.4), transparent 60%), radial-gradient(ellipse at 50% 100%, rgba(78, 205, 196, 0.15), transparent 60%);
-      pointer-events: none; z-index: -1;
-    }
-    .play-shell.evening::before {
-      content: ''; position: fixed; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(196, 75, 184, 0.4), transparent 60%), radial-gradient(ellipse at 50% 100%, rgba(78, 70, 180, 0.2), transparent 60%);
-      pointer-events: none; z-index: -1;
-    }
-    .play-shell.bonus::before {
-      content: ''; position: fixed; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(255, 107, 107, 0.4), transparent 60%), radial-gradient(ellipse at 50% 100%, rgba(255, 155, 155, 0.2), transparent 60%);
-      pointer-events: none; z-index: -1;
-    }
-    .play-shell.sacred::before {
-      content: ''; position: fixed; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(255, 200, 87, 0.4), transparent 60%), radial-gradient(ellipse at 50% 100%, rgba(255, 140, 66, 0.2), transparent 60%);
-      pointer-events: none; z-index: -1;
+      animation: fadeIn 0.7s ease backwards;
     }
 
     .play-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
 
     .icon-button {
-      width: 52px;
-      height: 52px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--line-strong);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       font-family: 'Fraunces', serif;
-      font-size: 1.625rem;
+      font-size: 1.75rem;
       color: var(--ink-bright);
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
     }
-    .icon-button:hover { border-color: var(--gold); color: var(--gold); background: rgba(255, 200, 87, 0.15); }
+    .icon-button:hover { border-color: var(--gold-bright); color: var(--gold-bright); background: rgba(244, 197, 88, 0.15); box-shadow: 0 0 20px var(--gold-glow); }
 
     .session-badge {
       display: flex;
       align-items: center;
-      gap: 0.625rem;
-      padding: 0.75rem 1.375rem;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(12px);
+      gap: 0.75rem;
+      padding: 0.875rem 1.625rem;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--line-strong);
       border-radius: 100px;
-      font-size: 0.9375rem;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--ink-bright);
     }
 
-    .play-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2rem; }
+    .play-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2.25rem; }
 
-    .breath-outer {
-      width: 320px;
-      height: 320px;
+    /* === MULTI-RING BREATHING CIRCLE === */
+    .breath-stage {
+      position: relative;
+      width: 360px;
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .breath-ring {
+      position: absolute;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
+      border: 1px solid var(--line-strong);
+      animation: breath-pulse 9s ease-in-out infinite;
+    }
+    .breath-ring-1 { width: 100%; height: 100%; }
+    .breath-ring-2 { width: 88%; height: 88%; animation-delay: -1s; opacity: 0.8; }
+    .breath-ring-3 { width: 76%; height: 76%; animation-delay: -2s; opacity: 0.6; border-style: dashed; }
+    @keyframes breath-pulse {
+      0%, 100% { transform: scale(0.92); opacity: 0.5; }
+      50%      { transform: scale(1.08); opacity: 0.9; }
+    }
+
+    .breath-orb {
+      width: 64%;
+      height: 64%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.18), transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(244, 197, 88, 0.12), rgba(196, 75, 184, 0.18) 60%, rgba(78, 184, 184, 0.10) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--line-strong);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.6), inset 0 2px 8px rgba(255, 255, 255, 0.12);
+      box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.7), inset 0 2px 8px rgba(255, 255, 255, 0.15), 0 0 60px rgba(244, 197, 88, 0.12);
+      animation: orb-breathe 9s ease-in-out infinite;
       position: relative;
+      z-index: 1;
     }
-    .breath-outer::before {
-      content: '';
-      position: absolute;
-      inset: -10px;
-      border-radius: 50%;
-      border: 1px dashed var(--line-strong);
-      opacity: 0.5;
+    @keyframes orb-breathe {
+      0%, 100% { transform: scale(0.94); }
+      50%      { transform: scale(1.06); }
     }
 
     .breath-inner-text {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.875rem;
+      font-size: 2.125rem;
       font-style: italic;
       font-weight: 500;
       color: var(--ink-bright);
       letter-spacing: 0.02em;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+      animation: text-breathe 9s ease-in-out infinite;
+    }
+    @keyframes text-breathe {
+      0%, 100% { opacity: 0.85; }
+      50%      { opacity: 1; }
     }
 
     .session-status {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(1.875rem, 5vw, 2.5rem);
+      font-size: clamp(2.125rem, 5.5vw, 2.75rem);
       font-style: italic;
       font-weight: 500;
       color: var(--ink-bright);
       line-height: 1.3;
       max-width: 32rem;
-      min-height: 3rem;
+      min-height: 3.25rem;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
     }
 
     .voice-label {
       display: inline-flex;
       align-items: center;
-      gap: 0.625rem;
-      padding: 0.875rem 1.5rem;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(12px);
+      gap: 0.75rem;
+      padding: 1rem 1.75rem;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--line-strong);
       border-radius: 100px;
-      font-size: 0.9375rem;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--ink-bright);
     }
 
-    .audio-section { width: 100%; max-width: 32rem; padding: 0 1rem; }
+    .audio-section { width: 100%; max-width: 34rem; padding: 0 1rem; }
     audio {
       width: 100%;
-      height: 64px;
+      height: 72px;
       border-radius: 100px;
       filter: invert(1) hue-rotate(180deg);
     }
     .audio-help {
       text-align: center;
-      margin-top: 1rem;
-      font-size: 0.8125rem;
+      margin-top: 1.125rem;
+      font-size: 0.875rem;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--ink-soft);
     }
@@ -531,9 +671,9 @@
     .stream-footer {
       display: inline-flex;
       align-items: center;
-      gap: 0.625rem;
-      padding: 0.625rem 1.25rem;
-      font-size: 0.9375rem;
+      gap: 0.75rem;
+      padding: 0.75rem 1.375rem;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--ink-soft);
       letter-spacing: 0.04em;
@@ -541,139 +681,142 @@
 
     .home-footer {
       text-align: center;
-      margin-top: 4rem;
+      margin-top: 4.5rem;
       font-family: 'Fraunces', serif;
       font-style: italic;
-      font-size: 1rem;
-      letter-spacing: 0.4em;
+      font-size: 1.0625rem;
+      letter-spacing: 0.42em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-bright);
     }
 
     /* MODAL */
     .modal-overlay {
       position: fixed; inset: 0;
-      background: rgba(20, 10, 35, 0.8);
-      backdrop-filter: blur(12px);
+      background: rgba(14, 8, 35, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       z-index: 50;
       display: flex; align-items: flex-end; justify-content: center;
       padding: 1rem;
+      animation: fadeIn 0.4s ease;
     }
     @media (min-width: 640px) { .modal-overlay { align-items: center; } }
     .modal {
       width: 100%;
-      max-width: 30rem;
+      max-width: 32rem;
       background: linear-gradient(135deg, var(--bg-elevated), var(--bg-base));
       border: 1px solid var(--line-strong);
-      border-radius: 16px;
-      padding: 2.25rem;
+      border-radius: 20px;
+      padding: 2.5rem;
       max-height: 90vh;
       overflow-y: auto;
       color: var(--ink-bright);
-      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.7);
+      animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .modal-title {
       font-family: 'Fraunces', serif;
-      font-size: 2.5rem;
+      font-size: 2.75rem;
       font-weight: 600;
       letter-spacing: -0.02em;
     }
     .modal-close {
-      width: 44px; height: 44px;
+      width: 48px; height: 48px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--line-strong);
       display: flex; align-items: center; justify-content: center;
       cursor: pointer;
-      font-size: 1.25rem;
+      font-size: 1.375rem;
       color: var(--ink-bright);
     }
     .form-label {
       display: block;
-      font-size: 0.8125rem;
+      font-size: 0.875rem;
       font-weight: 700;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.625rem;
+      color: var(--gold-bright);
+      margin-bottom: 0.75rem;
     }
     .form-input {
       width: 100%;
-      padding: 1.125rem 1.25rem;
-      background: rgba(0, 0, 0, 0.25);
+      padding: 1.25rem 1.375rem;
+      background: rgba(0, 0, 0, 0.3);
       border: 1px solid var(--line-strong);
-      border-radius: 8px;
+      border-radius: 10px;
       font-family: 'Inter Tight', sans-serif;
-      font-size: 1.0625rem;
+      font-size: 1.125rem;
       font-weight: 500;
       color: var(--ink-bright);
-      transition: border-color 0.2s ease;
+      transition: all 0.3s ease;
     }
     .form-input::placeholder { color: var(--ink-mute); }
-    .form-input:focus { outline: none; border-color: var(--gold); }
-    .form-hint { font-size: 0.875rem; color: var(--ink-mute); margin-top: 0.625rem; font-style: italic; }
+    .form-input:focus { outline: none; border-color: var(--gold-bright); box-shadow: 0 0 16px var(--gold-glow); }
+    .form-hint { font-size: 0.9375rem; color: var(--ink-mute); margin-top: 0.75rem; font-style: italic; }
     .primary-btn {
       width: 100%;
-      padding: 1.25rem;
-      background: linear-gradient(90deg, var(--gold), var(--orange));
+      padding: 1.375rem;
+      background: linear-gradient(90deg, var(--gold), var(--amber-bright));
       color: var(--bg-base);
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-family: 'Inter Tight', sans-serif;
-      font-size: 1rem;
+      font-size: 1.0625rem;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 16px rgba(255, 200, 87, 0.4);
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(212, 168, 60, 0.5);
     }
-    .primary-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255, 200, 87, 0.5); }
+    .primary-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(212, 168, 60, 0.6); }
 
-    .custom-list { display: flex; flex-direction: column; gap: 0.625rem; }
+    .custom-list { display: flex; flex-direction: column; gap: 0.75rem; }
     .custom-item {
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1.125rem 1.25rem;
-      background: rgba(0, 0, 0, 0.25);
+      display: flex; align-items: center; gap: 1.125rem;
+      padding: 1.25rem 1.375rem;
+      background: rgba(0, 0, 0, 0.3);
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 10px;
     }
-    .custom-item .name { font-size: 1.0625rem; font-weight: 600; }
+    .custom-item .name { font-size: 1.125rem; font-weight: 600; }
     .delete-btn {
-      padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.08);
+      padding: 0.625rem 1.125rem;
+      background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--line-strong);
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       color: var(--ink-soft);
-      font-size: 0.8125rem;
+      font-size: 0.875rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
-    .delete-btn:hover { background: rgba(255, 107, 107, 0.2); color: var(--coral); border-color: var(--coral); }
+    .delete-btn:hover { background: rgba(214, 61, 94, 0.18); color: var(--ruby-soft); border-color: var(--ruby-soft); }
 
-    .volume-row { display: flex; flex-direction: column; gap: 0.75rem; }
-    .volume-header { display: flex; justify-content: space-between; font-size: 1rem; font-weight: 700; color: var(--ink-bright); }
+    .volume-row { display: flex; flex-direction: column; gap: 0.875rem; }
+    .volume-header { display: flex; justify-content: space-between; font-size: 1.0625rem; font-weight: 700; color: var(--ink-bright); }
 
     input[type="range"] {
       width: 100%;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 4px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 5px;
       outline: none;
       appearance: none;
       -webkit-appearance: none;
       cursor: pointer;
     }
     input[type="range"]::-webkit-slider-thumb {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--gold-bright);
       cursor: pointer;
       border: 3px solid var(--bg-base);
-      box-shadow: 0 2px 8px rgba(255, 200, 87, 0.6);
+      box-shadow: 0 4px 12px var(--gold-glow);
       appearance: none;
       -webkit-appearance: none;
     }
@@ -681,6 +824,19 @@
 </head>
 <body>
 
+<!-- Aurora background -->
+<div class="aurora">
+  <div class="aurora-blob aurora-1"></div>
+  <div class="aurora-blob aurora-2"></div>
+  <div class="aurora-blob aurora-3"></div>
+  <div class="aurora-blob aurora-4"></div>
+</div>
+<div class="vignette"></div>
+
+<!-- Floating gold dust -->
+<div class="dust" id="dustContainer"></div>
+
+<!-- Hidden background flute - DO NOT TOUCH (working architecture) -->
 <audio id="fluteBackground" loop preload="auto" style="display:none">
   <source src="https://res.cloudinary.com/dgvrjgorn/video/upload/v1777437029/danamusic-relaxing-flute-meditation-416756_eri5yl.mp3" type="audio/mpeg" />
 </audio>
@@ -774,6 +930,22 @@ function getAllSessions() {
 const fluteEl = document.getElementById("fluteBackground");
 const app = document.getElementById("app");
 
+// === GENERATE FLOATING GOLD DUST PARTICLES ===
+function generateDust() {
+  const container = document.getElementById("dustContainer");
+  const count = 24;
+  for (let i = 0; i < count; i++) {
+    const dust = document.createElement("div");
+    dust.className = "dust-particle";
+    dust.style.left = Math.random() * 100 + "%";
+    dust.style.animationDuration = (12 + Math.random() * 14) + "s";
+    dust.style.animationDelay = (Math.random() * -18) + "s";
+    dust.style.opacity = (0.3 + Math.random() * 0.5).toString();
+    container.appendChild(dust);
+  }
+}
+generateDust();
+
 function renderHome() {
   const sessions = getAllSessions();
   app.innerHTML = `
@@ -784,7 +956,7 @@ function renderHome() {
         </button>
       </div>
       <div class="fade-up stagger-2" style="text-align: center; margin-bottom: 1rem;">
-        <div class="eyebrow" style="margin-bottom: 1.5rem;">— Daily Practice —</div>
+        <div class="eyebrow" style="margin-bottom: 1.75rem;">— Daily Practice —</div>
         <h1 class="display-title">I am rich.<br/><em>I am healthy.</em></h1>
         <div class="ornament">
           <div class="ornament-line"></div>
@@ -805,7 +977,7 @@ function renderHome() {
         <div class="eyebrow">Sessions</div>
         <div class="eyebrow" style="color: var(--ink-mute);">${sessions.length} total</div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 0.875rem;">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
         ${sessions.map((s, i) => `
           <button onclick="enterSession('${s.id}')" data-id="${s.id}" class="session-card fade-up stagger-${Math.min(i + 5, 8)} ${s.isCustom ? 'custom' : ''}">
             <div class="session-numeral">${s.numeral}</div>
@@ -836,24 +1008,24 @@ function renderSetupModal() {
   return `
     <div class="modal-overlay" onclick="if(event.target === this) { state.showSetup = false; renderHome(); }">
       <div class="modal" onclick="event.stopPropagation()">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
           <h2 class="modal-title">Settings</h2>
           <button onclick="state.showSetup = false; renderHome();" class="modal-close">✕</button>
         </div>
-        <div style="margin-bottom: 1.75rem; padding: 1.25rem 1.5rem; background: rgba(0, 0, 0, 0.25); border: 1px solid var(--line); border-radius: 8px;">
-          <div style="display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.625rem;">
+        <div style="margin-bottom: 2rem; padding: 1.5rem 1.625rem; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--line); border-radius: 10px;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
             <span class="status-dot"></span>
-            <span style="font-size: 1.0625rem; font-weight: 700;">Cloud Audio Connected</span>
+            <span style="font-size: 1.125rem; font-weight: 700;">Cloud Audio Connected</span>
           </div>
-          <p style="font-size: 0.9375rem; color: var(--ink-soft); line-height: 1.5;">All voices and flute load from your Cloudinary cloud.</p>
+          <p style="font-size: 1rem; color: var(--ink-soft); line-height: 1.5;">All voices and flute load from your Cloudinary cloud.</p>
         </div>
         ${state.customSessions.length > 0 ? `
-          <div style="margin-bottom: 1.75rem;">
+          <div style="margin-bottom: 2rem;">
             <div class="form-label">Your Custom Affirmations</div>
             <div class="custom-list">
               ${state.customSessions.map(s => `
                 <div class="custom-item">
-                  <span style="color: var(--coral); font-size: 1.5rem; font-family: 'Fraunces', serif; font-style: italic;">${s.name.charAt(0)}</span>
+                  <span style="color: var(--ruby-soft); font-size: 1.625rem; font-family: 'Fraunces', serif; font-style: italic;">${s.name.charAt(0)}</span>
                   <span class="name" style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${s.name}</span>
                   <button onclick="removeCustom('${s.id}')" class="delete-btn">remove</button>
                 </div>
@@ -861,8 +1033,8 @@ function renderSetupModal() {
             </div>
           </div>
         ` : ""}
-        <div style="margin-bottom: 1.75rem;">
-          <div class="form-label" style="margin-bottom: 1.25rem;">Background Flute Volume</div>
+        <div style="margin-bottom: 2rem;">
+          <div class="form-label" style="margin-bottom: 1.375rem;">Background Flute Volume</div>
           <div class="volume-row">
             <div class="volume-header">
               <span>Flute</span><span id="fluteVolDisplay">${state.fluteVol}%</span>
@@ -880,14 +1052,14 @@ function renderAddModal() {
   return `
     <div class="modal-overlay" onclick="if(event.target === this) { state.showAdd = false; renderHome(); }">
       <div class="modal" onclick="event.stopPropagation()">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
           <h2 class="modal-title">Add Affirmation</h2>
           <button onclick="state.showAdd = false; renderHome();" class="modal-close">✕</button>
         </div>
-        <p style="font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.5; margin-bottom: 1.75rem;">
+        <p style="font-size: 1.125rem; color: var(--ink-soft); line-height: 1.5; margin-bottom: 2rem;">
           Paste a Cloudinary URL or any public audio link.
         </p>
-        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
           <div>
             <label class="form-label">Name</label>
             <input id="newName" type="text" class="form-input" placeholder="e.g. Healing, Sleep" />
@@ -902,7 +1074,7 @@ function renderAddModal() {
             <p class="form-hint">Upload to your Cloudinary, copy the URL, paste here.</p>
           </div>
         </div>
-        <button onclick="addCustomSession()" class="primary-btn" style="margin-top: 1.75rem;">Add to Sanctuary</button>
+        <button onclick="addCustomSession()" class="primary-btn" style="margin-top: 2rem;">Add to Sanctuary</button>
       </div>
     </div>
   `;
@@ -912,19 +1084,23 @@ function renderSession() {
   const session = getAllSessions().find(s => s.id === state.activeSession);
   if (!session) return renderHome();
   const isSacred = session.type === "devotional";
-  const themeClass = ["morning", "afternoon", "evening", "bonus", "sacred"].includes(session.id) ? session.id : "evening";
 
   app.innerHTML = `
-    <div class="play-shell ${themeClass}">
+    <div class="play-shell">
       <div class="play-header fade-up stagger-1">
         <button onclick="exitSession()" class="icon-button">‹</button>
         <div class="session-badge">${session.numeral} · ${session.name}</div>
-        <div style="width: 52px;"></div>
+        <div style="width: 56px;"></div>
       </div>
       <div class="play-content">
         <div class="fade-up stagger-2">
-          <div class="breath-outer breath-circle">
-            ${isSacred ? `<div style="font-size: 6rem; color: var(--gold); text-shadow: 0 0 20px rgba(255, 200, 87, 0.6);">✦</div>` : `<span id="breathText" class="breath-inner-text">breathe in</span>`}
+          <div class="breath-stage">
+            <div class="breath-ring breath-ring-1"></div>
+            <div class="breath-ring breath-ring-2"></div>
+            <div class="breath-ring breath-ring-3"></div>
+            <div class="breath-orb">
+              ${isSacred ? `<div style="font-size: 6.5rem; color: var(--gold-bright); text-shadow: 0 0 28px var(--gold-glow);">✦</div>` : `<span id="breathText" class="breath-inner-text">breathe in</span>`}
+            </div>
           </div>
         </div>
         <div class="fade-up stagger-3">
@@ -932,7 +1108,7 @@ function renderSession() {
         </div>
         <div class="fade-up stagger-4">
           <div class="voice-label">
-            <span style="color: var(--gold);">●</span>
+            <span style="color: var(--gold-bright);">●</span>
             ${session.voiceLabel}
           </div>
         </div>
@@ -953,6 +1129,7 @@ function renderSession() {
   const voiceEl = document.getElementById("voiceAudio");
   if (fluteEl) fluteEl.volume = state.fluteVol / 100;
 
+  // === WORKING AUDIO ARCHITECTURE — UNCHANGED ===
   voiceEl.addEventListener("play", () => {
     document.getElementById("sessionStatus").textContent = isSacred ? "🪷 May this practice bring peace" : "Listen, breathe, receive";
     if (!isSacred && fluteEl) {
